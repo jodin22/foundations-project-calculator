@@ -131,22 +131,25 @@ divMultiply.appendChild(totalMultiply);
 
 // the divide function. for this one, do it slightly different from your previous functions where you just take a single number 
 // at a time. the previous functions from the 08_calculator hw is taking multiple numbers and that is why you had rest parameters.
-// the calculator project is taking one number, then the operator is pressed, then another number and then another operator and 
-// then another number and another operator and so on and so on until the equals button is pressed. when the equals is pressed, 
-// then an answer shows.
 
 const divide = function(...futureNumbers) {
     console.log(`function received: ${futureNumbers}`);
-    const toDivide = futureNumbers;
-    console.log(`numbers to divide: ${toDivide}`);
-    const totalDivide = toDivide.reduce((accumVal, nextVal) => {
-        return accumVal / nextVal;
-    });
-    return totalDivide;
+    const toDivide = futureNumbers; // need a name to refer to the array of numbers this function received so we can use the name
+    // and then apply array methods
+    console.log(`numbers to divide: ${toDivide}`); 
+    const totalDivide = toDivide.reduce((accumVal, nextVal) => { // since there is no starting value for the accumulator,
+        return accumVal / nextVal; // it will take index 0 as the first val. then accumulate index 1 to it. then this new val 
+        // will be the accumulator and will go to index 2 and accumulate that. and then you have a new val and will accumulate with 
+        // the next index until the length of the array. 
+    }); // this line will show a value if you need to accumulate objects that are items in an array. for now, your items in the 
+    // array are non-objects and just numbers
+    return totalDivide; // having 2 returns is ok bc the return accumulator line is within the arrow function so it doesn't 
+    // interfere with the return totalDivide that will send the final value to whichever line called this function
+
 };
 
-const showEnteredNumbersDivide = enteredNumbers(100, 2, 3, 4, 5);
-const showTotalDivide = divide(100, 2, 3, 4, 5);
+const showEnteredNumbersDivide = enteredNumbers(10000, 1, 2, 3, 4, 5, 6, 7, 49, 59);
+const showTotalDivide = divide(10000, 1, 2, 3, 4, 5, 6, 7, 49, 59);
 console.log({showTotalDivide});
 
 const numberDivide = document.createElement("p"); // create the elements
@@ -160,3 +163,83 @@ totalDivide.textContent = `Total: ${showTotalDivide}`;
 document.body.appendChild(divDivide); // show the content
 divMultiply.appendChild(numberDivide);
 divMultiply.appendChild(totalDivide);
+
+/*  
+Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an 
+operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
+You should already have the code that can populate the display, so once operate() has been called, update the display with 
+the ‘solution’ to the operation.
+
+This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with
+them. Don’t feel bad if it takes you a while to figure out the logic.
+
+the calculator project is taking one number, then the operator is pressed, then another number and then another operator and 
+then another number and another operator and so on and so on until the equals button is pressed. when the equals is pressed, 
+then an answer shows.
+
+*/
+
+/*  
+pseudocode to start out. enter a number and store that number. then press an operator. it could be add, subtract, multiply or 
+divide. then enter another number and store that number also. then take the first and second number and do whatever operator was 
+pressed. then take that answer and store it. 
+
+if equals is pressed, then show the answer. if equals is not pressed, then take the 
+next operator that is pressed and the next number. that latest number with the first stored answer will have an operation done 
+to it. if equal is pressed, then show the answer. if equal is not pressed, then store the answer and get the next operator and 
+the next number. then do the operation on the latest answer and number. at this point it seems to repeat until equal is pressed.
+
+*/
+
+// take the first number and store it
+
+const addOperator = function(...futureNumbers) { 
+	console.log(`function received: ${futureNumbers}`); // shows all your numbers
+  //console.log(typeof futureNumbers); // thought this would show array, but shows as object
+  const toAdd = futureNumbers; // put the group of numbers into a const which is what you will use to refer to the array. otherwise 
+  // you won't be able to use reduce
+  console.log(`numbers to add: ${toAdd}`); // verifies that it is the same group of numbers from console line 32
+  const total = toAdd.reduce((initialVal, nextVal) => { // reduce is adding up all the numbers in your array
+    return initialVal + nextVal; // this return is only inside the arrow function so won't interfere with the return at line 44
+  }, 0); // the 0 is your initial val for the accumulator. if you don't have this, then it will use index 0 as the initial val 
+  // for the accumulator and then add index 1 to it and then you get a new val for the accumulator. then it adds index 2 to it 
+  // and you get a new val for the accumulator. then it adds index 3 to it and so on until the length of the array. for this,
+  // you really don't need the 0 bc you're not dealing with objects in the array elements. when you have objects in the array
+  // elements, then you need an initial val for the accumulator
+  return total; // need to return something so the html can display it
+};
+
+const subtractOperator = function(...futureNumbers) {
+  console.log(`function received: ${futureNumbers}`);
+  const toSubtract = futureNumbers; // the list of numbers is in an array format but has no name yet. now give it a name so you 
+  // can reference the array's name and use reduce or any other type of array method
+  console.log(`numbers to subtract: ${toSubtract}`); // verifies the same list of numbers from line 85
+  const total = toSubtract.reduce((initialVal, nextVal) =>{
+    return initialVal - nextVal;
+  }); // unlike the addition, here we don't give a starting value for initialVal aka accumulator
+  return total;
+};
+
+let initialNumber = 0;
+let nextNumber = 0;
+let initialAnswer = 0;
+let nextAnswer = 0;
+
+let initialOperator = "";
+let nextOperator = "";
+
+initialNumber = 8;
+nextNumber = 200;
+const addOperatorResult = addOperator(initialNumber, nextNumber); 
+console.log({addOperatorResult});
+
+initialAnswer = addOperatorResult;
+console.log({initialAnswer});
+
+const showSubtractResult = subtractOperator(initialNumber, nextNumber);
+console.log({showSubtractResult});
+
+initialAnswer = showSubtractResult;
+console.log({initialAnswer});
+
+
