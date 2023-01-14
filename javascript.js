@@ -1,23 +1,3 @@
-/*  
-Need to have add, subtract, mulitply and divide functions. 
-
-/home/jodin22sams/repos/javascript-exercises/08_calculator/calculator.js.
-
-Reference the 08_calculator hw since those have add, subtract and multiply functions. Divide will be a new function. You will also 
-need an operate function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
-
-Gotchas: watch out for and fix these bugs if they show up in your code:
-Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated
-at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student 
-solution.
-
-Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), 
-followed by an operator button (+), a second number button (7), and finally a second operator button (-). Your calculator should
-then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), 
-and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
-
-*/
-
 // the below is from the 08_calculator hw. use this as your starting point. you will need to create a divide function.
 
 // the add function
@@ -161,8 +141,35 @@ numberDivide.textContent = `Numbers to divide: ${showEnteredNumbersDivide}`; // 
 totalDivide.textContent = `Total: ${showTotalDivide}`;
 
 document.body.appendChild(divDivide); // show the content
-divMultiply.appendChild(numberDivide);
-divMultiply.appendChild(totalDivide);
+divDivide.appendChild(numberDivide);
+divDivide.appendChild(totalDivide);
+
+/*  
+Need to have add, subtract, mulitply and divide functions. 
+
+/home/jodin22sams/repos/javascript-exercises/08_calculator/calculator.js.
+
+Reference the 08_calculator hw since those have add, subtract and multiply functions. Divide will be a new function. You will also 
+need an operate function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
+
+*/
+
+/*  
+Pseudocode: For the first two numbers; initialNumber and nextNumber. They will enter initialNumber, then press either add, 
+subtract, multiply or divide. Then they will enter the nextNumber. Whichever operator they pressed, send the iniitalNumber and 
+nextNumber to that function. Store the answer. 
+
+If subtract is pressed, then then send initialNumber and nextNumber to the subtract function. Store the answer. 
+
+If multiply is pressed, then then send initialNumber and nextNumber to the multiply function. Store the answer. 
+
+If divide is pressed, then then send initialNumber and nextNumber to the divide function. Store the answer. 
+
+If equal is pressed, then show the answer. If equal is not pressed and they enter another number, then take the stored answer 
+from the first two numbers and send that answer with the new number to whichever function they want (add, sub, mult or div). 
+
+Keep doing the above until equal is pressed. The equal button will stop everything and show an answer.
+*/
 
 /*  
 Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an 
@@ -173,28 +180,27 @@ the ‘solution’ to the operation.
 This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with
 them. Don’t feel bad if it takes you a while to figure out the logic.
 
-the calculator project is taking one number, then the operator is pressed, then another number and then another operator and 
-then another number and another operator and so on and so on until the equals button is pressed. when the equals is pressed, 
-then an answer shows.
+*/
+
+/*
+Gotchas: watch out for and fix these bugs if they show up in your code:
+Users should be able to string together several operations and get the right answer, with each pair of numbers being evaluated
+at a time. For example, 12 + 7 - 5 * 3 = should yield 42. An example of the behavior we’re looking for would be this student 
+solution.
+
+Your calculator should not evaluate more than a single pair of numbers at a time. Example: you press a number button (12), 
+followed by an operator button (+), a second number button (7), and finally a second operator button (-). Your calculator should
+then do the following: first, evaluate the first pair of numbers (12 + 7), second, display the result of that calculation (19), 
+and finally, use that result (19) as the first number in your new calculation, along with the next operator (-).
 
 */
 
-/*  
-pseudocode to start out. enter a number and store that number. then press an operator. it could be add, subtract, multiply or 
-divide. then enter another number and store that number also. then take the first and second number and do whatever operator was 
-pressed. then take that answer and store it. 
-
-if equals is pressed, then show the answer. if equals is not pressed, then take the 
-next operator that is pressed and the next number. that latest number with the first stored answer will have an operation done 
-to it. if equal is pressed, then show the answer. if equal is not pressed, then store the answer and get the next operator and 
-the next number. then do the operation on the latest answer and number. at this point it seems to repeat until equal is pressed.
-
-*/
-
-// take the first number and store it
+// The add and subtract functions below are the same as those above at lines 4 and 47. I changed the names from add to 
+// addOperator while I test out receiving two numbers and storing the answer. Then receive another number and combine the stored
+// answer with the new number and the new operator.
 
 const addOperator = function(...futureNumbers) { 
-	console.log(`function received: ${futureNumbers}`); // shows all your numbers
+	console.log(`add function received: ${futureNumbers}`); // shows all your numbers
   //console.log(typeof futureNumbers); // thought this would show array, but shows as object
   const toAdd = futureNumbers; // put the group of numbers into a const which is what you will use to refer to the array. otherwise 
   // you won't be able to use reduce
@@ -210,7 +216,7 @@ const addOperator = function(...futureNumbers) {
 };
 
 const subtractOperator = function(...futureNumbers) {
-  console.log(`function received: ${futureNumbers}`);
+  console.log(`subtract function received: ${futureNumbers}`);
   const toSubtract = futureNumbers; // the list of numbers is in an array format but has no name yet. now give it a name so you 
   // can reference the array's name and use reduce or any other type of array method
   console.log(`numbers to subtract: ${toSubtract}`); // verifies the same list of numbers from line 85
@@ -220,26 +226,110 @@ const subtractOperator = function(...futureNumbers) {
   return total;
 };
 
-let initialNumber = 0;
-let nextNumber = 0;
-let initialAnswer = 0;
-let nextAnswer = 0;
+let initialNumber = 0; // First number
+let nextNumber = 0; // Second number, third number, fourth number, fifth number etc.
+let initialAnswerAdd = 0; // Result of the first operator; could be sum, subtract, mult or div. If another number is entered, then 
+// need to send initialAnswer with the new number to the next operator.
+let initialAnswerSubtract = 0;
+let initialAnswer = 0; // see if this is sufficient for add and subtract
+let nextAnswerAdd = 0; // maybe not use?
+let nextAnswerSubtract = 0; // maybe not use?
 
-let initialOperator = "";
-let nextOperator = "";
+let initialOperator = ""; // maybe not use?
+let nextOperator = ""; // maybe not use?
 
-initialNumber = 8;
+// Testing on add and subtract for two numbers only
+initialNumber = 88; 
 nextNumber = 200;
-const addOperatorResult = addOperator(initialNumber, nextNumber); 
+let addOperatorResult = addOperator(initialNumber, nextNumber); 
 console.log({addOperatorResult});
 
-initialAnswer = addOperatorResult;
+initialAnswerAdd = addOperatorResult; // This is put into initialAnswer if they want to add another number
+console.log({initialAnswerAdd});
+
+let subtractOperatorResult = subtractOperator(initialNumber, nextNumber);
+console.log({subtractOperatorResult});
+
+initialAnswerSubtract = subtractOperatorResult; // This is put into initialAnswer if they want to subtract another number
+console.log({initialAnswerSubtract});
+
+// Testing with a third number. This takes the initialAnswer above and does either add or subtract with a third number.
+// nextNumber will constantly be updated. initialNumber is not used anymore until they start over again after pressing 
+// equals.
+
+nextNumber = 48; // the third number. this replaces the previous nextNumber
+addOperatorResult = addOperator(initialAnswerAdd, nextNumber);
+initialAnswerAdd = addOperatorResult; // this replaces the previous initialAnswerAdd if they want to add more
+console.log({addOperatorResult});
+console.log({initialAnswerAdd});
+
+subtractOperatorResult = subtractOperator(initialAnswerSubtract, nextNumber);
+initialAnswerSubtract = subtractOperatorResult; // this replaces the previous initialAnswerSubtract if they want to subtract more
+console.log({subtractOperatorResult});
+console.log({initialAnswerSubtract});
+
+// seems nextNumber and intialAnswerAdd and initialAnswerSubtract will always be replaced by new numbers until the equals button 
+// is pressed.
+
+nextNumber = 58; // the fourth number. this replaces the previous number
+addOperatorResult = addOperator(initialAnswerAdd, nextNumber);
+console.log({addOperatorResult});
+initialAnswerAdd = addOperatorResult; // this replaces the previous initialAnswerAdd
+console.log({initialAnswerAdd});
+
+subtractOperatorResult = subtractOperator(initialAnswerSubtract, nextNumber);
+console.log({subtractOperatorResult});
+initialAnswerSubtract = subtractOperatorResult; // this replaces the previous initialAnswerSubtract
+console.log({initialAnswerSubtract});
+
+// need to always update nextNumber and initialAnswerAdd and initialAnswerSubtract if they keep entering numbers. once equals 
+// is pressed, then stop all functions.
+
+// testing multiple numbers but instead of all add or all subtract, combine add and subtract. before we used 88, 200, 48 and 58.
+// use these same numbers but mix up add and subtract
+
+// add the first two, then subtract the third, then add the fourth
+// see what happens when you don't have initialAnswerAdd and initialAnswerSubtract and just have initialAnswer
+initialNumber = 88; // first number
+nextNumber = 200; // second number
+addOperatorResult = addOperator(initialNumber, nextNumber);
+console.log({addOperatorResult});
+initialAnswer = addOperatorResult; // the result of the operation is put in initialAnswer bc we need to send this to the new
+// operator when they don't press equals
 console.log({initialAnswer});
 
-const showSubtractResult = subtractOperator(initialNumber, nextNumber);
-console.log({showSubtractResult});
-
-initialAnswer = showSubtractResult;
+nextNumber = 48; // the third number
+subtractOperatorResult = subtractOperator(initialAnswer, nextNumber);
+console.log({subtractOperatorResult});
+initialAnswer = subtractOperatorResult; // this replaces the previous answer when they don't press equals and want to do more 
+// numbers
 console.log({initialAnswer});
+
+nextNumber = 58; // the fourth number
+addOperatorResult = addOperator(initialAnswer, nextNumber);
+console.log({addOperatorResult});
+initialAnswer = addOperatorResult; // this replaces the previous answer when they don't press equals and want to do more 
+// numbers
+console.log({initialAnswer});
+
+// seems nextNumber and initialAnswer can always be used over and over again with new values. nextNumber is for each new 
+// number they want to add or subtract. and initialAnswer is what you need to send to the next operator function bc 
+// your calculator should not evaluate more than a single pair of numbers at a time. 
+
+// next add the first two, then subtract the third, then subtract the fourth. and keep doing differnt combinations and then 
+// try with multiply and divide as well. then mix it all up and see what happens.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
