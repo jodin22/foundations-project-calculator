@@ -1,4 +1,5 @@
-// the below is from the 08_calculator hw. use this as your starting point. you will need to create a divide function.
+// the below is from the 08_calculator hw. use this as your starting point. the hw didn't have a divide function. that will be 
+// a new one.
 
 // the add function
 const add = function(...futureNumbers) { 
@@ -109,9 +110,7 @@ document.body.appendChild(divMultiply); // show the content
 divMultiply.appendChild(numberMultiply);
 divMultiply.appendChild(totalMultiply);
 
-// the divide function. for this one, do it slightly different from your previous functions where you just take a single number 
-// at a time. the previous functions from the 08_calculator hw is taking multiple numbers and that is why you had rest parameters.
-
+// the divide function is new. the 08_calculator hw  didn't have this one. 
 const divide = function(...futureNumbers) {
     console.log(`function received: ${futureNumbers}`);
     const toDivide = futureNumbers; // need a name to refer to the array of numbers this function received so we can use the name
@@ -228,10 +227,11 @@ const subtractOperator = function(...futureNumbers) {
 
 let initialNumber = 0; // First number
 let nextNumber = 0; // Second number, third number, fourth number, fifth number etc.
-let initialAnswerAdd = 0; // Result of the first operator; could be sum, subtract, mult or div. If another number is entered, then 
+let initialAnswer = 0; // use this instead of initialAnswerAdd and initialAnswerSubtract
+let initialAnswerAdd = 0; // maybe not use? 
+// Result of the first operator; could be sum, subtract, mult or div. If another number is entered, then 
 // need to send initialAnswer with the new number to the next operator.
-let initialAnswerSubtract = 0;
-let initialAnswer = 0; // see if this is sufficient for add and subtract
+let initialAnswerSubtract = 0; // maybe not use?
 let nextAnswerAdd = 0; // maybe not use?
 let nextAnswerSubtract = 0; // maybe not use?
 
@@ -318,6 +318,100 @@ console.log({initialAnswer});
 
 // next add the first two, then subtract the third, then subtract the fourth. and keep doing differnt combinations and then 
 // try with multiply and divide as well. then mix it all up and see what happens.
+
+// same numbers 88, 200, 48 and 58. this time add first two, then subtract third and fourth.
+initialNumber = 88;
+nextNumber = 200;
+addOperatorResult = addOperator(initialNumber, nextNumber); // first operation will be add
+console.log(`Result of first two: ${addOperatorResult}`); // result of first two
+initialAnswer = addOperatorResult; // storing answer to send to the next operator
+console.log({initialAnswer});
+
+nextNumber = 48; // at this point, only need to update nextNumber and initialAnswer
+subtractOperatorResult = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${subtractOperatorResult}`);
+initialAnswer = subtractOperatorResult;
+console.log({initialAnswer});
+
+nextNumber = 58;
+subtractOperatorResult = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${subtractOperatorResult}`);
+initialAnswer = subtractOperatorResult;
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// same numbers 88, 200, 48 and 58. this time subtract first two, then subtract third and add fourth.
+initialNumber = 88;
+nextNumber = 200;
+initialAnswer = subtractOperator(initialNumber, nextNumber); // instead of using let subtractOperatorResult, put the answer 
+// into initialAnswer and send that with the nextNumber to the next operator. it saves a step.
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = subtractOperator(initialAnswer, nextNumber); // instead of using let subtractOperatorResult, put the answer 
+// into initialAnswer and send that with the nextNumber to the next operator. it saves a step
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 58;
+initialAnswer = addOperator(initialAnswer, nextNumber); // instead of using let addOperatorResult, put the answer 
+// into initialAnswer and send that with the nextNumber to the next operator. it saves a step
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// lines 342 to 358 seem to work. something i realized is that you don't need let addOperatorResult and let subtractOperatorResult 
+// bc you can put the answer in initialAnswer and it keeps updating. so when a new operator is called, all you need to do is 
+// send the initialAnswer with the new number (nextNumber) that they entered. 
+
+// so far it seems the variables you need at the beginning are initialNumber, nextNumber and initialAnswer. when it does an 
+// an operation on a pair of numbers, the initialNumber doesn't change. only the nextNumber and initialAnswer seems to change 
+// and get constantly updated until the equals button is pressed.
+
+// same numbers 88, 200, 48 and 58. this time subtract first two, then subtract third and fourth.
+initialNumber = 88;
+nextNumber = 200;
+initialAnswer = subtractOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 58;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// same numbers 88, 200, 48 and 58. this time subtract first two, then add third and fourth.
+initialNumber = 88;
+nextNumber = 200;
+initialAnswer = subtractOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 58;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// notice starting at line 342, the results of the operator on a pair of numbers is always put into initialAnswer. that is 
+// because whatever operation is done on a pair of numbers, that result has to be sent to the next operation. and in the 
+// meantime before they press equals, you can show the initialAnswer while they are entering the next number. 
+
+// the pseudocode at this point for add and subtract is this:
+// get two numbers. put the first number in initialNumber. the second one is put in nextNumber. if they press add or subtract, 
+// then the addOperator() or subtractOperator() will do its job and send the results to initialAnswer. if they put another number, 
+// then this new number updates nextNumber. if they press add or subtract again, then it will send the new number along with
+// initialAnswer to the addOperator() or subtractOperator() and update initialAnswer. this keeps going until they press equals.
+
+// next is to test these numbers on multiply and divide
+
+
+
+
+
+
 
 
 
