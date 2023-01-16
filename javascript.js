@@ -405,14 +405,168 @@ console.log(`Send to next operator along with new number if they enter another n
 // then this new number updates nextNumber. if they press add or subtract again, then it will send the new number along with
 // initialAnswer to the addOperator() or subtractOperator() and update initialAnswer. this keeps going until they press equals.
 
-// next is to test these numbers on multiply and divide
+// next is to test numbers on multiply and divide.
 
+const multiplyOperator = function(...futureNumbers) {
+  console.log(`function received: ${futureNumbers}`); // to see what was received
+  const toMultiply = futureNumbers; // need a name to refer to the array of numbers this function received so we can use the name
+  // and then apply array methods
+  console.log(`numbers to multiply: ${toMultiply}`); // verify that this set of numbers is the same as what was received. {} will show the name of the 
+  // variable and the value. without {}, only shows the value
+  const totalMultiply = toMultiply.reduce((accumulator, nextVal)=> { // since there is no starting value for the accumulator, 
+    return accumulator * nextVal; // it will take index 0 as the first val. then accumulate index 1 to it. then this new val 
+    // will be the accumulator and will go to index 2 and accumulate that. and then you have a new val and will accumulate with 
+    // the next index until the length of the array. 
+  }); // this line will show a value if you need to accumulate objects that are items in an array. for now, your items in the 
+  // array are non-objects and just numbers
+  return totalMultiply; // having 2 returns is ok bc the return accumulator line is within the arrow function so it doesn't 
+  // interfere with the return totalMultiply that will send the final value to whichever line called this function
+};
 
+const divideOperator = function(...futureNumbers) {
+  console.log(`function received: ${futureNumbers}`);
+  const toDivide = futureNumbers; // need a name to refer to the array of numbers this function received so we can use the name
+  // and then apply array methods
+  console.log(`numbers to divide: ${toDivide}`); 
+  const totalDivide = toDivide.reduce((accumVal, nextVal) => { // since there is no starting value for the accumulator,
+      return accumVal / nextVal; // it will take index 0 as the first val. then accumulate index 1 to it. then this new val 
+      // will be the accumulator and will go to index 2 and accumulate that. and then you have a new val and will accumulate with 
+      // the next index until the length of the array. 
+  }); // this line will show a value if you need to accumulate objects that are items in an array. for now, your items in the 
+  // array are non-objects and just numbers
+  return totalDivide; // having 2 returns is ok bc the return accumulator line is within the arrow function so it doesn't 
+  // interfere with the return totalDivide that will send the final value to whichever line called this function
 
+};
 
+/*  
+When you divide a negative number by a positive number then the quotient is negative. When you divide a positive
+number by a negative number then the quotient is also negative. When you divide two negative numbers then the quotient
+is positive. The same rules hold true for multiplication.
+*/
 
+// numbers 88, -200, 48 and -58. this time multiply first two, then divide third and multiply fourth. 
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = multiplyOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
 
+nextNumber = 48;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
 
+nextNumber = -58;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// numbers 88, -200, 48 and -58. this time multiply first two, then divide third and fourth. 
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = multiplyOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = -58;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// numbers 88, -200, 48 and -58. this time multiply first two, then multiply third and fourth. 
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = multiplyOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = -58;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// numbers 88, -200, 48 and -58. this time multiply first two, then multiply third and divide fourth.
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = multiplyOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = -58;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// numbers 88, -200, 48 and -58. this time divide first two, then divide third and nultiply fourth.
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = -58;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// numbers 88, -200, 48 and -58. this time divide first two, then divide third and fourth.
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = -58;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// numbers 88, -200, 48 and -58. this time divide first two, then multiply third and fourth.
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = -58;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// numbers 88, -200, 48 and -58. this time divide first two, then multiply third and divide fourth.
+initialNumber = 88;
+nextNumber = -200;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = 48;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = -58;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+// line 443 to 566 tested different combinations of multiplying and dividing these numbers  88, -200, 48 and -58. seems to work
+// ok. next is to combine all operators so the tests will be a combination of add, subtract, multiply and divide. 
 
 
 
