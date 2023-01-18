@@ -568,16 +568,424 @@ console.log(`Send to next operator along with new number if they enter another n
 // line 443 to 566 tested different combinations of multiplying and dividing these numbers  88, -200, 48 and -58. seems to work
 // ok. next is to combine all operators so the tests will be a combination of add, subtract, multiply and divide. 
 
+// numbers -91, 1205, -427, 6, -50, 49, -672 multiply, divide, add, subtract, multiply, divide.
+
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = multiplyOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
 
 
+// numbers -91, 1205, -427, 6, -50, 49, -672 multiply, divide, add, subtract, multiply, multiply.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = multiplyOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
 
 
+// numbers -91, 1205, -427, 6, -50, 49, -672 multiply, divide, add, subtract, divide, divide.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = multiplyOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
 
 
+// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, add.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = subtractOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
 
 
+// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, subtract.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = subtractOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
 
 
+// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, divide.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = subtractOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
 
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, multiply.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = subtractOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, add, subtract.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = addOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, subtract, subtract.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = addOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, multiply, subtract.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = addOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, divide, subtract.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = addOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, subtract.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, add.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, multiply.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+
+// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, divide.
+initialNumber = -91;
+nextNumber = 1205;
+initialAnswer = divideOperator(initialNumber, nextNumber);
+console.log(`Result of first two: ${initialAnswer}`);
+
+nextNumber = -427;
+initialAnswer = addOperator(initialAnswer, nextNumber);
+console.log(`Result of third: ${initialAnswer}`);
+
+nextNumber = 6;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of fourth: ${initialAnswer}`);
+
+nextNumber = -50;
+initialAnswer = multiplyOperator(initialAnswer, nextNumber);
+console.log(`Result of fifth: ${initialAnswer}`);
+
+nextNumber = 49;
+initialAnswer = subtractOperator(initialAnswer, nextNumber);
+console.log(`Result of sixth: ${initialAnswer}`);
+
+nextNumber = -672;
+initialAnswer = divideOperator(initialAnswer, nextNumber);
+console.log(`Result of seventh: ${initialAnswer}`);
+console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
 
 
