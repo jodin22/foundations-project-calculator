@@ -228,175 +228,13 @@ const subtractOperator = function(...futureNumbers) {
   return total;
 };
 
-let initialNumber = 0; // First number
-let nextNumber = 0; // Second number, third number, fourth number, fifth number etc.
-let initialAnswer = 0; // use this instead of initialAnswerAdd and initialAnswerSubtract
-let initialAnswerAdd = 0; // maybe not use? 
-// Result of the first operator; could be sum, subtract, mult or div. If another number is entered, then 
-// need to send initialAnswer with the new number to the next operator.
-let initialAnswerSubtract = 0; // maybe not use?
-let nextAnswerAdd = 0; // maybe not use?
-let nextAnswerSubtract = 0; // maybe not use?
-
-let initialOperator = ""; // maybe not use?
-let nextOperator = ""; // maybe not use?
-
-// Testing on add and subtract for two numbers only
-initialNumber = 88; 
-nextNumber = 200;
-let addOperatorResult = addOperator(initialNumber, nextNumber); 
-console.log({addOperatorResult});
-
-initialAnswerAdd = addOperatorResult; // This is put into initialAnswer if they want to add another number
-console.log({initialAnswerAdd});
-
-let subtractOperatorResult = subtractOperator(initialNumber, nextNumber);
-console.log({subtractOperatorResult});
-
-initialAnswerSubtract = subtractOperatorResult; // This is put into initialAnswer if they want to subtract another number
-console.log({initialAnswerSubtract});
-
-// Testing with a third number. This takes the initialAnswer above and does either add or subtract with a third number.
-// nextNumber will constantly be updated. initialNumber is not used anymore until they start over again after pressing 
-// equals.
-
-nextNumber = 48; // the third number. this replaces the previous nextNumber
-addOperatorResult = addOperator(initialAnswerAdd, nextNumber);
-initialAnswerAdd = addOperatorResult; // this replaces the previous initialAnswerAdd if they want to add more
-console.log({addOperatorResult});
-console.log({initialAnswerAdd});
-
-subtractOperatorResult = subtractOperator(initialAnswerSubtract, nextNumber);
-initialAnswerSubtract = subtractOperatorResult; // this replaces the previous initialAnswerSubtract if they want to subtract more
-console.log({subtractOperatorResult});
-console.log({initialAnswerSubtract});
-
-// seems nextNumber and intialAnswerAdd and initialAnswerSubtract will always be replaced by new numbers until the equals button 
-// is pressed.
-
-nextNumber = 58; // the fourth number. this replaces the previous number
-addOperatorResult = addOperator(initialAnswerAdd, nextNumber);
-console.log({addOperatorResult});
-initialAnswerAdd = addOperatorResult; // this replaces the previous initialAnswerAdd
-console.log({initialAnswerAdd});
-
-subtractOperatorResult = subtractOperator(initialAnswerSubtract, nextNumber);
-console.log({subtractOperatorResult});
-initialAnswerSubtract = subtractOperatorResult; // this replaces the previous initialAnswerSubtract
-console.log({initialAnswerSubtract});
-
-// need to always update nextNumber and initialAnswerAdd and initialAnswerSubtract if they keep entering numbers. once equals 
-// is pressed, then stop all functions.
-
-// testing multiple numbers but instead of all add or all subtract, combine add and subtract. before we used 88, 200, 48 and 58.
-// use these same numbers but mix up add and subtract
-
-// add the first two, then subtract the third, then add the fourth
-// see what happens when you don't have initialAnswerAdd and initialAnswerSubtract and just have initialAnswer
-initialNumber = 88; // first number
-nextNumber = 200; // second number
-addOperatorResult = addOperator(initialNumber, nextNumber);
-console.log({addOperatorResult});
-initialAnswer = addOperatorResult; // the result of the operation is put in initialAnswer bc we need to send this to the new
-// operator when they don't press equals
-console.log({initialAnswer});
-
-nextNumber = 48; // the third number
-subtractOperatorResult = subtractOperator(initialAnswer, nextNumber);
-console.log({subtractOperatorResult});
-initialAnswer = subtractOperatorResult; // this replaces the previous answer when they don't press equals and want to do more 
-// numbers
-console.log({initialAnswer});
-
-nextNumber = 58; // the fourth number
-addOperatorResult = addOperator(initialAnswer, nextNumber);
-console.log({addOperatorResult});
-initialAnswer = addOperatorResult; // this replaces the previous answer when they don't press equals and want to do more 
-// numbers
-console.log({initialAnswer});
-
 // seems nextNumber and initialAnswer can always be used over and over again with new values. nextNumber is for each new 
 // number they want to add or subtract. and initialAnswer is what you need to send to the next operator function bc 
-// your calculator should not evaluate more than a single pair of numbers at a time. 
-
-// next add the first two, then subtract the third, then subtract the fourth. and keep doing differnt combinations and then 
-// try with multiply and divide as well. then mix it all up and see what happens.
-
-// same numbers 88, 200, 48 and 58. this time add first two, then subtract third and fourth.
-initialNumber = 88;
-nextNumber = 200;
-addOperatorResult = addOperator(initialNumber, nextNumber); // first operation will be add
-console.log(`Result of first two: ${addOperatorResult}`); // result of first two
-initialAnswer = addOperatorResult; // storing answer to send to the next operator
-console.log({initialAnswer});
-
-nextNumber = 48; // at this point, only need to update nextNumber and initialAnswer
-subtractOperatorResult = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${subtractOperatorResult}`);
-initialAnswer = subtractOperatorResult;
-console.log({initialAnswer});
-
-nextNumber = 58;
-subtractOperatorResult = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${subtractOperatorResult}`);
-initialAnswer = subtractOperatorResult;
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// same numbers 88, 200, 48 and 58. this time subtract first two, then subtract third and add fourth.
-initialNumber = 88;
-nextNumber = 200;
-initialAnswer = subtractOperator(initialNumber, nextNumber); // instead of using let subtractOperatorResult, put the answer 
-// into initialAnswer and send that with the nextNumber to the next operator. it saves a step.
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = subtractOperator(initialAnswer, nextNumber); // instead of using let subtractOperatorResult, put the answer 
-// into initialAnswer and send that with the nextNumber to the next operator. it saves a step
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 58;
-initialAnswer = addOperator(initialAnswer, nextNumber); // instead of using let addOperatorResult, put the answer 
-// into initialAnswer and send that with the nextNumber to the next operator. it saves a step
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// lines 342 to 358 seem to work. something i realized is that you don't need let addOperatorResult and let subtractOperatorResult 
-// bc you can put the answer in initialAnswer and it keeps updating. so when a new operator is called, all you need to do is 
-// send the initialAnswer with the new number (nextNumber) that they entered. 
+// your calculator should not evaluate more than a single pair of numbers at a time.  
 
 // so far it seems the variables you need at the beginning are initialNumber, nextNumber and initialAnswer. when it does an 
 // an operation on a pair of numbers, the initialNumber doesn't change. only the nextNumber and initialAnswer seems to change 
 // and get constantly updated until the equals button is pressed.
-
-// same numbers 88, 200, 48 and 58. this time subtract first two, then subtract third and fourth.
-initialNumber = 88;
-nextNumber = 200;
-initialAnswer = subtractOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 58;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// same numbers 88, 200, 48 and 58. this time subtract first two, then add third and fourth.
-initialNumber = 88;
-nextNumber = 200;
-initialAnswer = subtractOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 58;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
 
 // notice starting at line 342, the results of the operator on a pair of numbers is always put into initialAnswer. that is 
 // because whatever operation is done on a pair of numbers, that result has to be sent to the next operation. and in the 
@@ -448,465 +286,11 @@ number by a negative number then the quotient is also negative. When you divide 
 is positive. The same rules hold true for multiplication.
 */
 
-// numbers 88, -200, 48 and -58. this time multiply first two, then divide third and multiply fourth. 
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = multiplyOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// numbers 88, -200, 48 and -58. this time multiply first two, then divide third and fourth. 
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = multiplyOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// numbers 88, -200, 48 and -58. this time multiply first two, then multiply third and fourth. 
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = multiplyOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// numbers 88, -200, 48 and -58. this time multiply first two, then multiply third and divide fourth.
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = multiplyOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// numbers 88, -200, 48 and -58. this time divide first two, then divide third and nultiply fourth.
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// numbers 88, -200, 48 and -58. this time divide first two, then divide third and fourth.
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// numbers 88, -200, 48 and -58. this time divide first two, then multiply third and fourth.
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// numbers 88, -200, 48 and -58. this time divide first two, then multiply third and divide fourth.
-initialNumber = 88;
-nextNumber = -200;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = 48;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = -58;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-// line 443 to 566 tested different combinations of multiplying and dividing these numbers  88, -200, 48 and -58. seems to work
-// ok. next is to combine all operators so the tests will be a combination of add, subtract, multiply and divide. 
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 multiply, divide, add, subtract, multiply, divide.
-
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = multiplyOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 multiply, divide, add, subtract, multiply, multiply.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = multiplyOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 multiply, divide, add, subtract, divide, divide.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = multiplyOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, add.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = subtractOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, subtract.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = subtractOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, divide.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = subtractOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 subtract, divide, add, subtract, multiply, multiply.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = subtractOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, add, subtract.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = addOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, subtract, subtract.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = addOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, multiply, subtract.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = addOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 add, divide, subtract, multiply, divide, subtract.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = addOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, subtract.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
+let initialNumber = 0; // First number
+let nextNumber = 0; // Second number, third number, fourth number, fifth number etc.
+let initialAnswer = 0; // use this instead of initialAnswerAdd and initialAnswerSubtract
+let initialOperator = "";
+let nextOperator = "";
 
 // numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, add.
 initialNumber = -91;
@@ -990,3 +374,218 @@ nextNumber = -672;
 initialAnswer = divideOperator(initialAnswer, nextNumber);
 console.log(`Result of seventh: ${initialAnswer}`);
 console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
+
+/* each number button pressed will show that number in the display. first do one number at a time. then put them in an array and 
+join or concatenate them so when you press the buttons 1, 2, 3, 4, it will show as 1234. store the ‘display value’ in a 
+variable somewhere for use in the next step.
+
+*/
+
+const display = document.querySelector("#show-numbers"); // put this id in display var. this will show the value later on.
+
+const button7 = document.querySelector("#button7"); // put the id's in each button var
+const button8 = document.querySelector("#button8");
+const button9 = document.querySelector("#button9"); // maybe don't need all these const's for buttons bc you can use a forEach
+const button4 = document.querySelector("#button4"); // buttons.forEach((button) => {
+const button5 = document.querySelector("#button5"); //  button.addEventListener('click', () => { ...}
+const button6 = document.querySelector("#button6");
+const button1 = document.querySelector("#button1");
+const button2 = document.querySelector("#button2");
+const button3 = document.querySelector("#button3");
+const button0 = document.querySelector("#button0");
+
+const buttonDivide = document.querySelector("#divide");
+const buttonMultiply = document.querySelector("#multiply");
+const buttonSubtract = document.querySelector("#subtract");
+const buttonAdd = document.querySelector("#add");
+
+/* right now, each number is being shown correctly. do an operation on single digit numbers and update the display. then do with 
+multiple digit numbers and update the display. when you click a number, put that value into initialNumber? then put the next one 
+in nextNumber? then do the operation and show results? 
+
+let initialNumber = 0; // First number
+let nextNumber = 0; // Second number, third number, fourth number, fifth number etc.
+let initialAnswer = 0; // use this instead of initialAnswerAdd and initialAnswerSubtract
+let initialOperator = "";
+let nextOperator = "";
+
+*/
+
+/*  
+const buttons = document.querySelectorAll('button'); // get the reference for all button tags and put in a var
+
+// use the forEach to iterate through each element of buttons
+buttons.forEach((button) => { // each element in the buttons "array" is passed to the arrow function that has an
+  button.addEventListener('click', () => { // event listener. each time a click happens, it will alert the button id using another
+    alert(`Button id: ${button.id}`); // arrow function
+  });
+});
+
+*/
+
+const displayArray = [];
+console.log(displayArray);
+
+button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
+  const showInDisplay = e.target.innerText;
+  console.log(showInDisplay); // text
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+  // nextNumber = showInDisplay;
+  // console.log(`next: ${nextNumber}`);
+  /*  
+  try sending the number into an array for the display. so 0 would be 7, then the next number 8 would be 1. after you click 
+  7, it sends it to index 0. then click multiply and that sends it to index 0 for an operator array. then click 8 and that 
+  sends it to index 1 of the display array. then click equal and it does the operation of index 0 operator array?
+  */
+
+});
+
+button8.addEventListener("click", (e) => { // when button 8 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  // initialNumber = showInDisplay;
+  // console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button9.addEventListener("click", (e) => { // when button 9 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button4.addEventListener("click", (e) => { // when button 4 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button5.addEventListener("click", (e) => { // when button 5 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button6.addEventListener("click", (e) => { // when button 6 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button1.addEventListener("click", (e) => { // when button 1 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button2.addEventListener("click", (e) => { // when button 2 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button3.addEventListener("click", (e) => { // when button 3 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+button0.addEventListener("click", (e) => { // when button 0 is clicked
+  const showInDisplay = e.target.innerText;
+  display.textContent = showInDisplay; // put the value in the display
+  initialNumber = showInDisplay;
+  console.log(`initial: ${initialNumber}`);
+  nextNumber = showInDisplay;
+  console.log(`next: ${nextNumber}`);
+  displayArray.push(showInDisplay);
+  console.log(displayArray);
+});
+
+buttonDivide.addEventListener("click", (e) => { // when divide is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
+  // initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  // console.log(`next: ${nextNumber}`);;
+});
+
+buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
+  initialAnswer = multiplyOperator(initialNumber, nextNumber);
+  console.log(`result of multiply: ${initialAnswer}`);
+  // nextAnswer = multiplyOperator(initialNumber, nextNumber);
+  // initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  // console.log(`next: ${nextNumber}`);;
+  /*  
+  
+  */
+
+});
+
+buttonSubtract.addEventListener("click", (e) => { // when divide is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
+  // initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  // console.log(`next: ${nextNumber}`);;
+});
+
+buttonAdd.addEventListener("click", (e) => { // when divide is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
+  // initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  // console.log(`next: ${nextNumber}`);;
+});
+
+
