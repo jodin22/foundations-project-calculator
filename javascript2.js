@@ -209,7 +209,7 @@ const addOperator = function(...futureNumbers) {
   console.log(`numbers to add: ${toAdd}`); // verifies that it is the same group of numbers from console line 32
   const total = toAdd.reduce((initialVal, nextVal) => { // reduce is adding up all the numbers in your array
     return initialVal + nextVal; // this return is only inside the arrow function so won't interfere with the return at line 44
-  }, 0); // the 0 is your initial val for the accumulator. if you don't have this, then it will use index 0 as the initial val 
+  }); // the 0 is your initial val for the accumulator. if you don't have this, then it will use index 0 as the initial val 
   // for the accumulator and then add index 1 to it and then you get a new val for the accumulator. then it adds index 2 to it 
   // and you get a new val for the accumulator. then it adds index 3 to it and so on until the length of the array. for this,
   // you really don't need the 0 bc you're not dealing with objects in the array elements. when you have objects in the array
@@ -398,6 +398,8 @@ const buttonDivide = document.querySelector("#divide");
 const buttonMultiply = document.querySelector("#multiply");
 const buttonSubtract = document.querySelector("#subtract");
 const buttonAdd = document.querySelector("#add");
+const buttonEquals = document.querySelector("#equals");
+const buttonClear = document.querySelector("#clear");
 
 /* right now, each number is being shown correctly. do an operation on single digit numbers and update the display. then do with 
 multiple digit numbers and update the display. when you click a number, put that value into initialNumber? then put the next one 
@@ -423,8 +425,13 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 
 */
 
-const displayArray = [];
+let i = 0;
+const displayArray = []; // starts as 0 and 1, then 2 and 3, then 4 and 5. the first is always even. the second is always odd.
 console.log(displayArray);
+let operatorArray = 0; // it holds the operator but doesn't do anything until a pair is received in displayArray. then 
+// after a pair is received, then it sends the pair to the operator 
+console.log(operatorArray);
+
 
 button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
   console.log(e.target); // full element with id, text etc
@@ -432,8 +439,8 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
   const showInDisplay = e.target.innerText;
   console.log(showInDisplay); // text
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
+  // initialNumber = showInDisplay;
+  // console.log(`initial: ${initialNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
   // nextNumber = showInDisplay;
@@ -442,8 +449,12 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
   try sending the number into an array for the display. so 0 would be 7, then the next number 8 would be 1. after you click 
   7, it sends it to index 0. then click multiply and that sends it to index 0 for an operator array. then click 8 and that 
   sends it to index 1 of the display array. then click equal and it does the operation of index 0 operator array?
-  */
 
+  pseudocode: click 7. it sends 7 to displayArray as index 0. then click multiply which will call multiply and get index 0. 
+  then click 8 which will send to displayArray as index 1. which will complete send index 1 to the multiply and return the 
+  answer.
+
+  */
 });
 
 button8.addEventListener("click", (e) => { // when button 8 is clicked
@@ -451,8 +462,8 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
   // initialNumber = showInDisplay;
   // console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  // nextNumber = showInDisplay;
+  // console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -460,10 +471,10 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
 button9.addEventListener("click", (e) => { // when button 9 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  ///console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -471,10 +482,10 @@ button9.addEventListener("click", (e) => { // when button 9 is clicked
 button4.addEventListener("click", (e) => { // when button 4 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -482,10 +493,10 @@ button4.addEventListener("click", (e) => { // when button 4 is clicked
 button5.addEventListener("click", (e) => { // when button 5 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -493,10 +504,10 @@ button5.addEventListener("click", (e) => { // when button 5 is clicked
 button6.addEventListener("click", (e) => { // when button 6 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -504,10 +515,10 @@ button6.addEventListener("click", (e) => { // when button 6 is clicked
 button1.addEventListener("click", (e) => { // when button 1 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -515,10 +526,10 @@ button1.addEventListener("click", (e) => { // when button 1 is clicked
 button2.addEventListener("click", (e) => { // when button 2 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -526,10 +537,10 @@ button2.addEventListener("click", (e) => { // when button 2 is clicked
 button3.addEventListener("click", (e) => { // when button 3 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -537,10 +548,10 @@ button3.addEventListener("click", (e) => { // when button 3 is clicked
 button0.addEventListener("click", (e) => { // when button 0 is clicked
   const showInDisplay = e.target.innerText;
   display.textContent = showInDisplay; // put the value in the display
-  initialNumber = showInDisplay;
-  console.log(`initial: ${initialNumber}`);
-  nextNumber = showInDisplay;
-  console.log(`next: ${nextNumber}`);
+  //initialNumber = showInDisplay;
+ // console.log(`initial: ${initialNumber}`);
+ // nextNumber = showInDisplay;
+ // console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
 });
@@ -552,13 +563,15 @@ buttonDivide.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
+  initialNumber = divideOperator(displayArray[i], );
+  console.log(initialNumber);
 });
 
 buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  initialAnswer = multiplyOperator(initialNumber, nextNumber);
-  console.log(`result of multiply: ${initialAnswer}`);
+  // initialAnswer = multiplyOperator(initialNumber, nextNumber);
+  // console.log(`result of multiply: ${initialAnswer}`);
   // nextAnswer = multiplyOperator(initialNumber, nextNumber);
   // initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -567,6 +580,9 @@ buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
   /*  
   
   */
+  // operatorArray = multiplyOperator(displayArray[0], displayArray[1]);
+  initialNumber = multiplyOperator(displayArray[i], );
+  console.log(initialNumber); // shows NaN until the second number is entered. then it does the multiplication
 
 });
 
@@ -577,6 +593,8 @@ buttonSubtract.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
+  initialNumber = subtractOperator(displayArray[i], );
+  console.log(initialNumber);
 });
 
 buttonAdd.addEventListener("click", (e) => { // when divide is clicked
@@ -586,6 +604,43 @@ buttonAdd.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
+  initialNumber = addOperator(displayArray[i], );
+  console.log(initialNumber);
+});
+
+buttonEquals.addEventListener("click", (e) => { // when divide is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
+  // initialNumber = showInDisplay;
+  //console.log(`initial: ${initialNumber}`);
+  //nextNumber = showInDisplay;
+  // console.log(`next: ${nextNumber}`);;
+  initialAnswer = divideOperator(initialNumber, displayArray[i+1]);
+  // initialAnswer = multiplyOperator(initialNumber, displayArray[i+1]);
+  // initialAnswer = subtractOperator(initialNumber, displayArray[i+1]);
+  // initialAnswer = addOperator(initialNumber, displayArray[i+1]); // add seems to concatenate but the others seem to work. 
+  // for add, it is bc it sees it as a string so need to convert to number? might as well convert all of them to numbers?
+  console.log(initialAnswer);
+  display.textContent = initialAnswer;
+
+/*
+testing each div, mult, sub manually by commenting and uncommenting each operation and only doing a pair of numbers at a time
+which is displayArray index 0 and index 1. then using CL to test another pair. seems to work ok but for add, it concatenates
+instead of treating them as numbers, it treats them as strings?
+
+after you get add to work, see how to extend each operation to more than one pair of numbers. maybe a loop? bc you are 
+storing the numbers in displayArray[], maybe advance the i and i+1 a little each time. so each odd is the first number and 
+each even is the second number of a future pair. then try to do the operations on multiple pairs.
+
+*/
+});
+
+buttonClear.addEventListener("click", (e) => { // when divide is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
+  display.textContent = 0;
+  displayArray.splice(0);
+  console.log(displayArray);
 });
 
 
