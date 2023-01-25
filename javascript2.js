@@ -425,13 +425,19 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 
 */
 
-let i = 0;
+//let i = 0;
 const displayArray = []; // starts as 0 and 1, then 2 and 3, then 4 and 5. the first is always even. the second is always odd.
 console.log(displayArray);
-let operatorArray = 0; // it holds the operator but doesn't do anything until a pair is received in displayArray. then 
+// const showIndex;
+//const intermediateAnswer = []; // after each pair's calculation, put the answer here and don't show until the equals is pressed
+// also used to send to the next calculation?
+//console.log(intermediateAnswer);
+// let operatorArray = 0; // it holds the operator but doesn't do anything until a pair is received in displayArray. then 
 // after a pair is received, then it sends the pair to the operator 
-console.log(operatorArray);
-
+// console.log(operatorArray);
+// const operatorArray = [divideOperator(displayArray[0],displayArray[1]), multiplyOperator(displayArray[0],displayArray[1]), 
+// subtractOperator(displayArray[0],displayArray[1]), addOperator(displayArray[0],displayArray[1])];
+// console.log(operatorArray);
 
 button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
   console.log(e.target); // full element with id, text etc
@@ -443,6 +449,30 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
   // console.log(`initial: ${initialNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+    console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
+
+  /*  
+the 460 part is getting each index number from the displayArray. displayArray holds all the values that you want to calculate. 
+when the first number is clicked, then the operator, what happens is the operator grabs index 0 from displayArray. it also needs 
+index 1 from displayArray but it won't get that until you click a second number. after you click a 2nd number, then you have both
+index 0 and 1 to send to the operator function. and when you click equals, it completes it. now that you know how to get index 0 and
+1. try to complete the operation without clicking equals. get that pair's answer and store it in an array or another var. then 
+when you enter a new number, it will send the initial answer as a new index 0 to the new operator and after a new 2nd number is 
+clicked, then sends both new index 0 and 1 to that operator to complete. but again, do it so you don't have to click equals to 
+complete the operation. 
+
+  */
+
   // nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);
   /*  
@@ -466,6 +496,16 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
   // console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+    console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button9.addEventListener("click", (e) => { // when button 9 is clicked
@@ -477,6 +517,16 @@ button9.addEventListener("click", (e) => { // when button 9 is clicked
   ///console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button4.addEventListener("click", (e) => { // when button 4 is clicked
@@ -488,6 +538,16 @@ button4.addEventListener("click", (e) => { // when button 4 is clicked
   //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button5.addEventListener("click", (e) => { // when button 5 is clicked
@@ -499,6 +559,16 @@ button5.addEventListener("click", (e) => { // when button 5 is clicked
   //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button6.addEventListener("click", (e) => { // when button 6 is clicked
@@ -510,6 +580,16 @@ button6.addEventListener("click", (e) => { // when button 6 is clicked
   //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button1.addEventListener("click", (e) => { // when button 1 is clicked
@@ -521,6 +601,16 @@ button1.addEventListener("click", (e) => { // when button 1 is clicked
   //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button2.addEventListener("click", (e) => { // when button 2 is clicked
@@ -532,6 +622,16 @@ button2.addEventListener("click", (e) => { // when button 2 is clicked
   //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button3.addEventListener("click", (e) => { // when button 3 is clicked
@@ -543,6 +643,16 @@ button3.addEventListener("click", (e) => { // when button 3 is clicked
   //console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 button0.addEventListener("click", (e) => { // when button 0 is clicked
@@ -554,6 +664,16 @@ button0.addEventListener("click", (e) => { // when button 0 is clicked
  // console.log(`next: ${nextNumber}`);
   displayArray.push(showInDisplay);
   console.log(displayArray);
+  /* for (const test of displayArray) {
+  /  console.log(test);
+  }; */
+  for (const test of displayArray) {
+    console.log(test);
+    console.log(displayArray.length);
+  };
+  const showIndex = displayArray.map((element, index) => {
+    console.log(`${element} clicked is index[${index}]`);
+  });
 });
 
 buttonDivide.addEventListener("click", (e) => { // when divide is clicked
@@ -563,7 +683,7 @@ buttonDivide.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
-  initialNumber = divideOperator(displayArray[i], );
+  initialNumber = divideOperator(displayArray[0]);
   console.log(initialNumber);
 });
 
@@ -581,7 +701,7 @@ buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
   
   */
   // operatorArray = multiplyOperator(displayArray[0], displayArray[1]);
-  initialNumber = multiplyOperator(displayArray[i], );
+  initialNumber = multiplyOperator(displayArray[0]);
   console.log(initialNumber); // shows NaN until the second number is entered. then it does the multiplication
 
 });
@@ -593,7 +713,7 @@ buttonSubtract.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
-  initialNumber = subtractOperator(displayArray[i], );
+  initialNumber = subtractOperator(displayArray[0]);
   console.log(initialNumber);
 });
 
@@ -604,9 +724,35 @@ buttonAdd.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
-  initialNumber = addOperator(displayArray[i], );
+  initialNumber = addOperator(displayArray[0]);
   console.log(initialNumber);
 });
+
+// if displayArray has both numbers, then show an answer in const intermediateAnswer = []. this holds answers and also sends 
+// that answer to the next calculation. equals will show the final answer?
+//if (displayArray[1] !== undefined) {
+  //initialAnswer = addOperator(initialNumber, displayArray[1]);
+  //console.log(initialAnswer);
+//}
+
+// do a test on each number button. checks if the displayArray has a number in positions 1, 3, 5, 7, etc which is the 2nd pair 
+// of the calculation. if that 2nd pair exists, then do the calculation but only store it and display it but it doesn't officially 
+// end until the equals button is pressed.
+
+/*  
+displayArray[0,1,2,3,4,5,6,7,8,9,10,11...] % 2 on each odd index will have a value. use that as a test that a pair has been 
+sent to the operator function?
+
+the loop will see if an odd index has been filled. if that is true, then we know we have a pair of numbers to calculate and 
+store that value until the equals is pressed and then show all pairs calculated?
+
+// this will show the index number but only seems to work on the first button press. subsequent button presses don't show 
+// the key/index number. something to do with next?
+for (const key of iterator) { 
+  console.log(key);
+};
+
+*/
 
 buttonEquals.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target); // full element with id, text etc
@@ -615,10 +761,10 @@ buttonEquals.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
-  // initialAnswer = divideOperator(initialNumber, displayArray[i+1]);
-  // initialAnswer = multiplyOperator(initialNumber, displayArray[i+1]);
-  // initialAnswer = subtractOperator(initialNumber, displayArray[i+1]);
-  initialAnswer = addOperator(initialNumber, displayArray[i+1]); // add seems to concatenate but the others seem to work. 
+  // initialAnswer = divideOperator(initialNumber, displayArray[1]);
+  // initialAnswer = multiplyOperator(initialNumber, displayArray[1]);
+  // initialAnswer = subtractOperator(initialNumber, displayArray[1]);
+  initialAnswer = addOperator(initialNumber, displayArray[1]); // add seems to concatenate but the others seem to work. 
   // for add, it is bc it sees it as a string so need to convert to number? might as well convert all of them to numbers?
   console.log(initialAnswer);
   display.textContent = initialAnswer;
@@ -634,6 +780,7 @@ each even is the second number of a future pair. then try to do the operations o
 
 */
 });
+
 
 buttonClear.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target); // full element with id, text etc
