@@ -436,7 +436,7 @@ console.log(operatorArray);
 button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   console.log(showInDisplay); // text
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
   // initialNumber = showInDisplay;
@@ -458,7 +458,7 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
 });
 
 button8.addEventListener("click", (e) => { // when button 8 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
   // initialNumber = showInDisplay;
   // console.log(`initial: ${initialNumber}`);
@@ -469,7 +469,7 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
 });
 
 button9.addEventListener("click", (e) => { // when button 9 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
   //initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -480,7 +480,7 @@ button9.addEventListener("click", (e) => { // when button 9 is clicked
 });
 
 button4.addEventListener("click", (e) => { // when button 4 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display
   //initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -491,7 +491,7 @@ button4.addEventListener("click", (e) => { // when button 4 is clicked
 });
 
 button5.addEventListener("click", (e) => { // when button 5 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display
   //initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -502,7 +502,7 @@ button5.addEventListener("click", (e) => { // when button 5 is clicked
 });
 
 button6.addEventListener("click", (e) => { // when button 6 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display
   //initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -513,7 +513,7 @@ button6.addEventListener("click", (e) => { // when button 6 is clicked
 });
 
 button1.addEventListener("click", (e) => { // when button 1 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display
   //initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -524,7 +524,7 @@ button1.addEventListener("click", (e) => { // when button 1 is clicked
 });
 
 button2.addEventListener("click", (e) => { // when button 2 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display
   //initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -535,7 +535,7 @@ button2.addEventListener("click", (e) => { // when button 2 is clicked
 });
 
 button3.addEventListener("click", (e) => { // when button 3 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display
   //initialNumber = showInDisplay;
   //console.log(`initial: ${initialNumber}`);
@@ -546,7 +546,7 @@ button3.addEventListener("click", (e) => { // when button 3 is clicked
 });
 
 button0.addEventListener("click", (e) => { // when button 0 is clicked
-  const showInDisplay = e.target.innerText;
+  const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display
   //initialNumber = showInDisplay;
  // console.log(`initial: ${initialNumber}`);
@@ -615,10 +615,10 @@ buttonEquals.addEventListener("click", (e) => { // when divide is clicked
   //console.log(`initial: ${initialNumber}`);
   //nextNumber = showInDisplay;
   // console.log(`next: ${nextNumber}`);;
-  initialAnswer = divideOperator(initialNumber, displayArray[i+1]);
+  // initialAnswer = divideOperator(initialNumber, displayArray[i+1]);
   // initialAnswer = multiplyOperator(initialNumber, displayArray[i+1]);
   // initialAnswer = subtractOperator(initialNumber, displayArray[i+1]);
-  // initialAnswer = addOperator(initialNumber, displayArray[i+1]); // add seems to concatenate but the others seem to work. 
+  initialAnswer = addOperator(initialNumber, displayArray[i+1]); // add seems to concatenate but the others seem to work. 
   // for add, it is bc it sees it as a string so need to convert to number? might as well convert all of them to numbers?
   console.log(initialAnswer);
   display.textContent = initialAnswer;
