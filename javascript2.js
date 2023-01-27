@@ -228,26 +228,6 @@ const subtractOperator = function(...futureNumbers) {
   return total;
 };
 
-// seems nextNumber and initialAnswer can always be used over and over again with new values. nextNumber is for each new 
-// number they want to add or subtract. and initialAnswer is what you need to send to the next operator function bc 
-// your calculator should not evaluate more than a single pair of numbers at a time.  
-
-// so far it seems the variables you need at the beginning are initialNumber, nextNumber and initialAnswer. when it does an 
-// an operation on a pair of numbers, the initialNumber doesn't change. only the nextNumber and initialAnswer seems to change 
-// and get constantly updated until the equals button is pressed.
-
-// notice starting at line 342, the results of the operator on a pair of numbers is always put into initialAnswer. that is 
-// because whatever operation is done on a pair of numbers, that result has to be sent to the next operation. and in the 
-// meantime before they press equals, you can show the initialAnswer while they are entering the next number. 
-
-// the pseudocode at this point for add and subtract is this:
-// get two numbers. put the first number in initialNumber. the second one is put in nextNumber. if they press add or subtract, 
-// then the addOperator() or subtractOperator() will do its job and send the results to initialAnswer. if they put another number, 
-// then this new number updates nextNumber. if they press add or subtract again, then it will send the new number along with
-// initialAnswer to the addOperator() or subtractOperator() and update initialAnswer. this keeps going until they press equals.
-
-// next is to test numbers on multiply and divide.
-
 const multiplyOperator = function(...futureNumbers) {
   console.log(`function received: ${futureNumbers}`); // to see what was received
   const toMultiply = futureNumbers; // need a name to refer to the array of numbers this function received so we can use the name
@@ -286,95 +266,6 @@ number by a negative number then the quotient is also negative. When you divide 
 is positive. The same rules hold true for multiplication.
 */
 
-let initialNumber = 0; // First number
-let nextNumber = 0; // Second number, third number, fourth number, fifth number etc.
-let initialAnswer = 0; // use this instead of initialAnswerAdd and initialAnswerSubtract
-let initialOperator = "";
-let nextOperator = "";
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, add.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, multiply.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
-
-// numbers -91, 1205, -427, 6, -50, 49, -672 divide, add, subtract, multiply, subtract, divide.
-initialNumber = -91;
-nextNumber = 1205;
-initialAnswer = divideOperator(initialNumber, nextNumber);
-console.log(`Result of first two: ${initialAnswer}`);
-
-nextNumber = -427;
-initialAnswer = addOperator(initialAnswer, nextNumber);
-console.log(`Result of third: ${initialAnswer}`);
-
-nextNumber = 6;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of fourth: ${initialAnswer}`);
-
-nextNumber = -50;
-initialAnswer = multiplyOperator(initialAnswer, nextNumber);
-console.log(`Result of fifth: ${initialAnswer}`);
-
-nextNumber = 49;
-initialAnswer = subtractOperator(initialAnswer, nextNumber);
-console.log(`Result of sixth: ${initialAnswer}`);
-
-nextNumber = -672;
-initialAnswer = divideOperator(initialAnswer, nextNumber);
-console.log(`Result of seventh: ${initialAnswer}`);
-console.log(`Send to next operator along with new number if they enter another number: ${initialAnswer}`);
-
 /* each number button pressed will show that number in the display. first do one number at a time. then put them in an array and 
 join or concatenate them so when you press the buttons 1, 2, 3, 4, it will show as 1234. store the ‘display value’ in a 
 variable somewhere for use in the next step.
@@ -405,12 +296,6 @@ const buttonClear = document.querySelector("#clear");
 multiple digit numbers and update the display. when you click a number, put that value into initialNumber? then put the next one 
 in nextNumber? then do the operation and show results? 
 
-let initialNumber = 0; // First number
-let nextNumber = 0; // Second number, third number, fourth number, fifth number etc.
-let initialAnswer = 0; // use this instead of initialAnswerAdd and initialAnswerSubtract
-let initialOperator = "";
-let nextOperator = "";
-
 */
 
 /*  
@@ -426,254 +311,637 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 */
 
 //let i = 0;
-const displayArray = []; // starts as 0 and 1, then 2 and 3, then 4 and 5. the first is always even. the second is always odd.
-console.log(displayArray);
-// const showIndex;
-//const intermediateAnswer = []; // after each pair's calculation, put the answer here and don't show until the equals is pressed
-// also used to send to the next calculation?
-//console.log(intermediateAnswer);
-// let operatorArray = 0; // it holds the operator but doesn't do anything until a pair is received in displayArray. then 
-// after a pair is received, then it sends the pair to the operator 
-// console.log(operatorArray);
-// const operatorArray = [divideOperator(displayArray[0],displayArray[1]), multiplyOperator(displayArray[0],displayArray[1]), 
-// subtractOperator(displayArray[0],displayArray[1]), addOperator(displayArray[0],displayArray[1])];
-// console.log(operatorArray);
+let initialAnswer;
+const displayArray = []; // starts as index 0 and index 1, then index 2 and 3, then 4 and 5. the first is always even. 
+// the second is always odd. work in pairs.
+console.log(`holds the number pairs: ${displayArray}`);
+
+const displayOperator = []; // holds the word for the operator function. then after the second number fills displayArray,
+// apply the correct operator function.
+
+console.log(`holds the operator: ${displayOperator}`);
 
 button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  console.log(showInDisplay); // text
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
-  // initialNumber = showInDisplay;
-  // console.log(`initial: ${initialNumber}`);
-  displayArray.push(showInDisplay);
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-    console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
+  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
 
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+  console.log(displayArray);
 
-  /*  
-the 460 part is getting each index number from the displayArray. displayArray holds all the values that you want to calculate. 
-when the first number is clicked, then the operator, what happens is the operator grabs index 0 from displayArray. it also needs 
-index 1 from displayArray but it won't get that until you click a second number. after you click a 2nd number, then you have both
-index 0 and 1 to send to the operator function. and when you click equals, it completes it. now that you know how to get index 0 and
-1. try to complete the operation without clicking equals. get that pair's answer and store it in an array or another var. then 
-when you enter a new number, it will send the initial answer as a new index 0 to the new operator and after a new 2nd number is 
-clicked, then sends both new index 0 and 1 to that operator to complete. but again, do it so you don't have to click equals to 
-complete the operation. 
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
 
-  */
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
 
-  // nextNumber = showInDisplay;
-  // console.log(`next: ${nextNumber}`);
-  /*  
-  try sending the number into an array for the display. so 0 would be 7, then the next number 8 would be 1. after you click 
-  7, it sends it to index 0. then click multiply and that sends it to index 0 for an operator array. then click 8 and that 
-  sends it to index 1 of the display array. then click equal and it does the operation of index 0 operator array?
-
-  pseudocode: click 7. it sends 7 to displayArray as index 0. then click multiply which will call multiply and get index 0. 
-  then click 8 which will send to displayArray as index 1. which will complete send index 1 to the multiply and return the 
-  answer.
-
-  */
 });
 
 button8.addEventListener("click", (e) => { // when button 8 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
-  // initialNumber = showInDisplay;
-  // console.log(`initial: ${initialNumber}`);
-  // nextNumber = showInDisplay;
-  // console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-    console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index 
+  // is an odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to 
+  // another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
 });
 
 button9.addEventListener("click", (e) => { // when button 9 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
   display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
-  //initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  ///console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is 
+  // an odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
 });
 
 button4.addEventListener("click", (e) => { // when button 4 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display
-  //initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  //console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is 
+  // an odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
 });
 
 button5.addEventListener("click", (e) => { // when button 5 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display
-  //initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  //console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is 
+  // an odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
 });
 
 button6.addEventListener("click", (e) => { // when button 6 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display
-  //initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  //console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
+  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
+
 });
 
 button1.addEventListener("click", (e) => { // when button 1 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display
-  //initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  //console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
+  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
 });
 
 button2.addEventListener("click", (e) => { // when button 2 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display
-  //initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  //console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
+  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
 });
 
 button3.addEventListener("click", (e) => { // when button 3 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display
-  //initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  //console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
+  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
+
 });
 
 button0.addEventListener("click", (e) => { // when button 0 is clicked
+  console.log(e.target); // full element with id, text etc
+  console.log(e.target.innerText); // text only
   const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display
-  //initialNumber = showInDisplay;
- // console.log(`initial: ${initialNumber}`);
- // nextNumber = showInDisplay;
- // console.log(`next: ${nextNumber}`);
-  displayArray.push(showInDisplay);
+  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
   console.log(displayArray);
-  /* for (const test of displayArray) {
-  /  console.log(test);
-  }; */
-  for (const test of displayArray) {
-    console.log(test);
-    console.log(displayArray.length);
+
+  const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
+  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
+  console.log(`the last index number: ${lastIndex}`);
+  
+  const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
+  // do the calculation
+  console.log(`modulus remainder of last index: ${isItOdd}`);
+  if (isItOdd != 0) { // if the last index is an odd number, then grab the last one and the one before it
+    // take both numbers in displayArray and do a calculation
+    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
+    const firstNumber = displayArray.length - 2; // index for first half of pair
+    const secondNumber = displayArray.length - 1; // index for second half of pair
+    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
+    // to apply.
+    const lastOperator = displayOperator.length - 1; // index of the last operation
+    console.log(displayOperator[lastOperator]); 
+
+    if (displayOperator[lastOperator] == "addOperator") {
+      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "subtractOperator") {
+      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "multiplyOperator") {
+      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] == "divideOperator") { 
+      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log(initialAnswer); // keep
+      displayArray.push(initialAnswer); // keep
+      display.textContent = initialAnswer;
+    };
+  } else {
+    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
+    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
   };
-  const showIndex = displayArray.map((element, index) => {
-    console.log(`${element} clicked is index[${index}]`);
-  });
+
+  console.log(displayArray);
+
+  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
+  // operator and get the answer
+
+  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
+  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
+  // that can be calculated.
+
 });
 
 buttonDivide.addEventListener("click", (e) => { // when divide is clicked
@@ -709,76 +977,23 @@ buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
 buttonSubtract.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  // initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  // console.log(`next: ${nextNumber}`);;
-  initialNumber = subtractOperator(displayArray[0]);
-  console.log(initialNumber);
+  displayOperator.push("subtractOperator");
+  console.log(displayOperator);
 });
 
 buttonAdd.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  // initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  // console.log(`next: ${nextNumber}`);;
-  initialNumber = addOperator(displayArray[0]);
-  console.log(initialNumber);
+  displayOperator.push("addOperator");
+  console.log(displayOperator);
 });
-
-// if displayArray has both numbers, then show an answer in const intermediateAnswer = []. this holds answers and also sends 
-// that answer to the next calculation. equals will show the final answer?
-//if (displayArray[1] !== undefined) {
-  //initialAnswer = addOperator(initialNumber, displayArray[1]);
-  //console.log(initialAnswer);
-//}
-
-// do a test on each number button. checks if the displayArray has a number in positions 1, 3, 5, 7, etc which is the 2nd pair 
-// of the calculation. if that 2nd pair exists, then do the calculation but only store it and display it but it doesn't officially 
-// end until the equals button is pressed.
-
-/*  
-displayArray[0,1,2,3,4,5,6,7,8,9,10,11...] % 2 on each odd index will have a value. use that as a test that a pair has been 
-sent to the operator function?
-
-the loop will see if an odd index has been filled. if that is true, then we know we have a pair of numbers to calculate and 
-store that value until the equals is pressed and then show all pairs calculated?
-
-// this will show the index number but only seems to work on the first button press. subsequent button presses don't show 
-// the key/index number. something to do with next?
-for (const key of iterator) { 
-  console.log(key);
-};
-
-*/
 
 buttonEquals.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  // initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  // console.log(`next: ${nextNumber}`);;
-  // initialAnswer = divideOperator(initialNumber, displayArray[1]);
-  // initialAnswer = multiplyOperator(initialNumber, displayArray[1]);
-  // initialAnswer = subtractOperator(initialNumber, displayArray[1]);
-  initialAnswer = addOperator(initialNumber, displayArray[1]); // add seems to concatenate but the others seem to work. 
-  // for add, it is bc it sees it as a string so need to convert to number? might as well convert all of them to numbers?
-  console.log(initialAnswer);
-  display.textContent = initialAnswer;
-
-/*
-testing each div, mult, sub manually by commenting and uncommenting each operation and only doing a pair of numbers at a time
-which is displayArray index 0 and index 1. then using CL to test another pair. seems to work ok but for add, it concatenates
-instead of treating them as numbers, it treats them as strings?
-
-after you get add to work, see how to extend each operation to more than one pair of numbers. maybe a loop? bc you are 
-storing the numbers in displayArray[], maybe advance the i and i+1 a little each time. so each odd is the first number and 
-each even is the second number of a future pair. then try to do the operations on multiple pairs.
-
-*/
+  const showNum = displayArray[displayArray.length - 1];
+  console.log(showNum);
+  display.textContent = showNum;
 });
 
 
@@ -788,6 +1003,7 @@ buttonClear.addEventListener("click", (e) => { // when divide is clicked
   display.textContent = 0;
   displayArray.splice(0);
   console.log(displayArray);
+  initialAnswer = 0;
 });
 
 
