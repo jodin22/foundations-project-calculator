@@ -310,7 +310,6 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 
 */
 
-//let i = 0;
 let initialAnswer;
 const displayArray = []; // starts as index 0 and index 1, then index 2 and 3, then 4 and 5. the first is always even. 
 // the second is always odd. work in pairs.
