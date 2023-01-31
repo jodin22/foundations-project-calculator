@@ -313,12 +313,12 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 let initialAnswer;
 const displayArray = []; // starts as index 0 and index 1, then index 2 and 3, then 4 and 5. the first is always even. 
 // the second is always odd. work in pairs.
-console.log(`holds the number pairs: ${displayArray}`);
+console.log(`holds the numbers: ${displayArray}`);
 
 const displayOperator = []; // holds the word for the operator function. then after the second number fills displayArray,
 // apply the correct operator function.
 
-console.log(`holds the operator: ${displayOperator}`);
+console.log(`holds the operators: ${displayOperator}`);
 
 button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
   console.log(e.target); // full element with id, text etc
@@ -365,6 +365,13 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator after a number.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -428,6 +435,13 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -490,6 +504,13 @@ button9.addEventListener("click", (e) => { // when button 9 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -552,6 +573,13 @@ button4.addEventListener("click", (e) => { // when button 4 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -614,6 +642,13 @@ button5.addEventListener("click", (e) => { // when button 5 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -676,6 +711,13 @@ button6.addEventListener("click", (e) => { // when button 6 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -739,6 +781,13 @@ button1.addEventListener("click", (e) => { // when button 1 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -801,6 +850,13 @@ button2.addEventListener("click", (e) => { // when button 2 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -863,6 +919,13 @@ button3.addEventListener("click", (e) => { // when button 3 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -926,6 +989,13 @@ button0.addEventListener("click", (e) => { // when button 0 is clicked
       console.log(initialAnswer); // keep
       displayArray.push(initialAnswer); // keep
       display.textContent = initialAnswer;
+    } else if (displayOperator[lastOperator] === undefined) { 
+      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
+      console.log("error"); // keep
+      let msg = "error. enter an operator.";
+      // displayArray.push(initialAnswer); // keep
+      display.textContent = msg;
+      displayArray.splice(lastIndex);
     };
   } else {
     console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
@@ -946,31 +1016,15 @@ button0.addEventListener("click", (e) => { // when button 0 is clicked
 buttonDivide.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  // initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  // console.log(`next: ${nextNumber}`);;
-  initialNumber = divideOperator(displayArray[0]);
-  console.log(initialNumber);
+  displayOperator.push("divideOperator");
+  console.log(displayOperator);
 });
 
 buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  // initialAnswer = multiplyOperator(initialNumber, nextNumber);
-  // console.log(`result of multiply: ${initialAnswer}`);
-  // nextAnswer = multiplyOperator(initialNumber, nextNumber);
-  // initialNumber = showInDisplay;
-  //console.log(`initial: ${initialNumber}`);
-  //nextNumber = showInDisplay;
-  // console.log(`next: ${nextNumber}`);;
-  /*  
-  
-  */
-  // operatorArray = multiplyOperator(displayArray[0], displayArray[1]);
-  initialNumber = multiplyOperator(displayArray[0]);
-  console.log(initialNumber); // shows NaN until the second number is entered. then it does the multiplication
-
+  displayOperator.push("multiplyOperator");
+  console.log(displayOperator);
 });
 
 buttonSubtract.addEventListener("click", (e) => { // when divide is clicked
@@ -985,6 +1039,50 @@ buttonAdd.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target.innerText); // text only
   displayOperator.push("addOperator");
   console.log(displayOperator);
+  
+  const displayArrayBeforeAnything = displayArray[0];
+
+  // for this length part, when the operator is pressed, show an error if there was no number pressed before the operator.
+  // see if you can keep track if the length changes?
+  const initialDisplayArray = displayArray.length;
+  console.log(`count of numbers entered: ${initialDisplayArray}`);
+
+  const changedDisplayArray = displayArray.length;
+  console.log(`new count of numbers entered: ${changedDisplayArray}`);
+
+
+
+
+  //const displayArrayLengthDiv2 = (displayArray.length / 2);
+  //console.log(`displayArray length div 2: ${displayArrayLengthDiv2}`);
+
+  //const displayOperatorLength = displayOperator.length;
+  //console.log(`displayOperator length: ${displayOperatorLength}`);
+
+  if (displayArrayBeforeAnything === undefined) { // when no numbers have been entered yet
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+    displayOperator.splice(0);
+  }; 
+  
+  //if (displayArray.length > 3) { // when there are already 2 numbers and awaiting a third or those after a pair
+    //if (displayArrayLengthDiv2 != displayOperatorLength) {
+      //console.log("error");
+      //let msg = "error. enter a number before an operator.";
+      //display.textContent = msg;
+    //};
+// };
+
+
+
+
+  /* if (displayArrayLengthDiv2 != displayOperatorLength) {
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+  }; */
+
 });
 
 buttonEquals.addEventListener("click", (e) => { // when divide is clicked
@@ -992,6 +1090,7 @@ buttonEquals.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target.innerText); // text only
   const showNum = displayArray[displayArray.length - 1];
   console.log(showNum);
+  displayOperator.splice(0);
   display.textContent = showNum;
 });
 
@@ -1001,7 +1100,9 @@ buttonClear.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target.innerText); // text only
   display.textContent = 0;
   displayArray.splice(0);
+  displayOperator.splice(0);
   console.log(displayArray);
+  console.log(displayOperator);
   initialAnswer = 0;
 });
 
