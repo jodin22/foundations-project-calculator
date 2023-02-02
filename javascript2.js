@@ -1255,6 +1255,42 @@ buttonDivide.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target.innerText); // text only
   displayOperator.push("divideOperator");
   console.log(displayOperator);
+
+  const displayArrayBeforeAnything = displayArray[0];
+
+  if (displayArrayBeforeAnything === undefined) { // when no numbers have been entered yet
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+    displayOperator.splice(0);
+  };
+
+  // for this length part, when the operator is pressed, show an error if there was no number pressed before the operator.
+  // see if you can keep track if the length changes?
+
+  // numbers entered starts at 1, then goes to 3, 5, 7, 9, 11, 13, etc. it goes up by 2 as long as there is 1 operator 
+  // entered between a number. the operators entered starts at 1 and goes to 2, then 3, 4, 5, etc.
+  // (operator count * 2) - 1. this will equal the number count?
+
+  const displayArrayLength = displayArray.length;  
+  console.log(`count of numbers entered: ${displayArrayLength}`);
+
+  const displayOperatorLength = displayOperator.length;
+  console.log(`count of operators entered: ${displayOperatorLength}`);
+  const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
+  console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
+
+  const lastOperator = displayOperator.length - 1;
+  console.log(`last index of operators: ${lastOperator}`);
+
+  if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+    displayOperator.splice(lastOperator);
+  }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
+  // but fix double numbers at each number button part?
+
 });
 
 buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
@@ -1262,6 +1298,42 @@ buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
   console.log(e.target.innerText); // text only
   displayOperator.push("multiplyOperator");
   console.log(displayOperator);
+
+  const displayArrayBeforeAnything = displayArray[0];
+
+  if (displayArrayBeforeAnything === undefined) { // when no numbers have been entered yet
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+    displayOperator.splice(0);
+  };
+
+  // for this length part, when the operator is pressed, show an error if there was no number pressed before the operator.
+  // see if you can keep track if the length changes?
+
+  // numbers entered starts at 1, then goes to 3, 5, 7, 9, 11, 13, etc. it goes up by 2 as long as there is 1 operator 
+  // entered between a number. the operators entered starts at 1 and goes to 2, then 3, 4, 5, etc.
+  // (operator count * 2) - 1. this will equal the number count?
+
+  const displayArrayLength = displayArray.length;  
+  console.log(`count of numbers entered: ${displayArrayLength}`);
+
+  const displayOperatorLength = displayOperator.length;
+  console.log(`count of operators entered: ${displayOperatorLength}`);
+  const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
+  console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
+
+  const lastOperator = displayOperator.length - 1;
+  console.log(`last index of operators: ${lastOperator}`);
+
+  if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+    displayOperator.splice(lastOperator);
+  }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
+  // but fix double numbers at each number button part?
+
 });
 
 buttonSubtract.addEventListener("click", (e) => { // when subtract is clicked
@@ -1269,6 +1341,42 @@ buttonSubtract.addEventListener("click", (e) => { // when subtract is clicked
   console.log(e.target.innerText); // text only
   displayOperator.push("subtractOperator");
   console.log(displayOperator);
+
+  const displayArrayBeforeAnything = displayArray[0];
+
+  if (displayArrayBeforeAnything === undefined) { // when no numbers have been entered yet
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+    displayOperator.splice(0);
+  };
+
+  // for this length part, when the operator is pressed, show an error if there was no number pressed before the operator.
+  // see if you can keep track if the length changes?
+
+  // numbers entered starts at 1, then goes to 3, 5, 7, 9, 11, 13, etc. it goes up by 2 as long as there is 1 operator 
+  // entered between a number. the operators entered starts at 1 and goes to 2, then 3, 4, 5, etc.
+  // (operator count * 2) - 1. this will equal the number count?
+
+  const displayArrayLength = displayArray.length;  
+  console.log(`count of numbers entered: ${displayArrayLength}`);
+
+  const displayOperatorLength = displayOperator.length;
+  console.log(`count of operators entered: ${displayOperatorLength}`);
+  const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
+  console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
+
+  const lastOperator = displayOperator.length - 1;
+  console.log(`last index of operators: ${lastOperator}`);
+
+  if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
+    console.log("error");
+    let msg = "error. enter a number before an operator.";
+    display.textContent = msg;
+    displayOperator.splice(lastOperator);
+  }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
+  // but fix double numbers at each number button part?
+
 });
 
 buttonAdd.addEventListener("click", (e) => { // when add is clicked
@@ -1317,10 +1425,12 @@ buttonAdd.addEventListener("click", (e) => { // when add is clicked
 buttonEquals.addEventListener("click", (e) => { // when divide is clicked
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  const showNum = displayArray[displayArray.length - 1];
+  const showNum = [];
+  showNum.push(displayArray[displayArray.length - 1]);
   console.log(showNum);
   displayOperator.splice(0);
   display.textContent = showNum;
+  displayArray.splice(0);
   // bc this clears all the operators, when you enter a new number after = or enter a new operator after =, you'll get an 
   // error. need to fix this by clearing everything but be sure to store the answer in another area if you want to do 
   // more operations to the answer/showNum
