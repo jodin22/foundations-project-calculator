@@ -1280,14 +1280,14 @@ buttonDivide.addEventListener("click", (e) => { // when divide is clicked
   const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
   console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
 
-  const lastOperator = displayOperator.length - 1;
+  const lastOperator = displayOperator.length - 2;
   console.log(`last index of operators: ${lastOperator}`);
 
   if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
     console.log("error");
     let msg = "error. enter a number before an operator.";
     display.textContent = msg;
-    displayOperator.splice(lastOperator);
+    displayOperator.splice(lastOperator, 1);
   }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
   // but fix double numbers at each number button part?
 
@@ -1323,14 +1323,14 @@ buttonMultiply.addEventListener("click", (e) => { // when multiply is clicked
   const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
   console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
 
-  const lastOperator = displayOperator.length - 1;
+  const lastOperator = displayOperator.length - 2;
   console.log(`last index of operators: ${lastOperator}`);
 
   if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
     console.log("error");
     let msg = "error. enter a number before an operator.";
     display.textContent = msg;
-    displayOperator.splice(lastOperator);
+    displayOperator.splice(lastOperator, 1);
   }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
   // but fix double numbers at each number button part?
 
@@ -1366,14 +1366,14 @@ buttonSubtract.addEventListener("click", (e) => { // when subtract is clicked
   const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
   console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
 
-  const lastOperator = displayOperator.length - 1;
+  const lastOperator = displayOperator.length - 2;
   console.log(`last index of operators: ${lastOperator}`);
 
   if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
     console.log("error");
     let msg = "error. enter a number before an operator.";
     display.textContent = msg;
-    displayOperator.splice(lastOperator);
+    displayOperator.splice(lastOperator, 1);
   }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
   // but fix double numbers at each number button part?
 
@@ -1409,14 +1409,14 @@ buttonAdd.addEventListener("click", (e) => { // when add is clicked
   const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
   console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
 
-  const lastOperator = displayOperator.length - 1;
+  const lastOperator = displayOperator.length - 2;
   console.log(`last index of operators: ${lastOperator}`);
 
   if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
     console.log("error");
     let msg = "error. enter a number before an operator.";
     display.textContent = msg;
-    displayOperator.splice(lastOperator);
+    displayOperator.splice(lastOperator, 1);
   }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
   // but fix double numbers at each number button part?
 
