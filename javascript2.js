@@ -311,6 +311,13 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 */
 
 let initialAnswer;
+const beforeMergeNumber = [];
+console.log(`changes single digits to complete number: ${beforeMergeNumber}`);
+
+const beforeDisplayArray = []; // put the merged numbers here as index 0, 1, 2, 3, etc. then push to displayArray?
+
+const displayArrayTest = [];
+
 const displayArray = []; // starts as index 0 and index 1, then index 2 and 3, then 4 and 5. the first is always even. 
 // the second is always odd. work in pairs.
 console.log(`holds the numbers: ${displayArray}`);
@@ -323,10 +330,64 @@ console.log(`holds the operators: ${displayOperator}`);
 button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  const showInDisplay = Number(e.target.innerText);
-  display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
-  displayArray.push(showInDisplay); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
+  const showInDisplay = e.target.innerText; // before it was Number(e.target.innerText)
+  // display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
+  
+  // here you need to put something to capture each number for multiple digits and then do a join or concatenate so the multiple
+  // digits entered are treated as a whole number.
+  beforeMergeNumber.push(showInDisplay); // each individual number is put into the array. next need to join/concatenate them to a 
+  // complete number.
+  console.log(beforeMergeNumber);
+  console.log(`before merge array count: ${beforeMergeNumber.length}`);
+  const afterMergeNumber = beforeMergeNumber.join(""); // line 331 makes the number button from string to a number, but bc of join
+  // the result is a string again. 
+  console.log(afterMergeNumber);
+  console.log(`after merge array count: ${afterMergeNumber.length}`);
+  console.log(typeof afterMergeNumber); // shows string. so will need to do Number again.
+  const afterMergeFromStringToNum = Number(afterMergeNumber);
+  console.log(afterMergeFromStringToNum); 
+  // console.log(afterMergeFromStringToNum.length);
+  console.log(typeof afterMergeFromStringToNum); // shows as number again.
+  display.textContent = afterMergeFromStringToNum;
+
+
+  const theLast = beforeDisplayArray.length; // will be 0 bc nothing is pushed to array until after line 358. after the first 
+  // push, then this increases with each push
+  console.log(`inital length of beforeDisplayArray: ${theLast}`)
+  beforeDisplayArray.push(afterMergeFromStringToNum);
+  console.log(beforeDisplayArray);
+  const theLatter = beforeDisplayArray.length; // should be 1 after the push. and this increases with each push.
+  console.log(`after push; length of beforeDisplayArray: ${theLatter}`)
+
+    // redo the 334 part. to not have 7 and then 777777's to be sent to displayArray? maybe remove the index 0?
+
+  // when click 7 once, it goes to index 0. then when click 7 multiple times, it will merge and show a larger number but it shows
+  // a 7 at index 0 and then for ex 77777777 at index 1 and that larger 777777's number keeps getting sent to index 1 instead of 
+  // the whole number going to index 0.
+
+  const lastIndexToPush = theLatter - 1;
+  displayArrayTest.push(beforeDisplayArray[lastIndexToPush]);
+  console.log(displayArrayTest); // expected 77777's but instead it shows 7, 777777's. and each new larger number of 77777s will
+  // be put in the array the same way as 7, 777777s. seems joining gives a larger number of 77777s but when you push that value 
+  // to a new array, it takes index 0 as the first digit of 7 and then index 1 is the real number you want?
+
+  const putIntoDisplayArray = displayArrayTest.slice(-1);
+  console.log(putIntoDisplayArray);
+  displayArray.push(putIntoDisplayArray);
   console.log(displayArray);
+
+  /*  
+  notice the below output and lines. line 370 is building the array with each press of 7s so when you finish pressing 
+  a bunch of 7s, you should have 777 or 77777 etc
+
+  line 375 is taking the last index and will push that value to the displayArray. line 377 instead of showing the value, shows
+  array1, array2 and as a result when you use an operator you get a really large number instead of 777 + 777 for ex
+
+  [7, 77, 777]              line 370
+  [777]                     javascript2.js:375 
+  (2) [Array(1), Array(1)]  javascript2.js:377
+
+  */
 
   const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
   // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
@@ -354,12 +415,13 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
     console.log(`count of operators entered: ${displayOperatorLength}`);
     const displayOperatorCompareDisplayArray = displayOperatorLength * 2;
     console.log(`operator count * 2: ${displayOperatorCompareDisplayArray}`);
-    // after one pair is 2 num, 1 oper. then array holds 3 num after push below line 360 bc third is the result of operation.
-    // after second pair is 4 num, 2 oper. then array holds 5 num after push below line 360 bc fifth is the result of operation.
-    // after third pair is 6 num, 3 oper. then array holds 7 num after push below line 360 bc seventh is result of operation.
-    // after fourth pair is 8 num, 4 oper. then array holds 9 num after push below line 360 bc 9th is result of operation.
-    // after fifth pair is 10 num, 5 oper. then array holds 11 num after push below line 360 bc 11th is result of operation.
+    // after one pair is 2 num, 1 oper. then array holds 3 num after push below (line 372) bc third is the result of operation.
+    // after second pair is 4 num, 2 oper. then array holds 5 num after push below (line 372) bc fifth is the result of operation.
+    // after third pair is 6 num, 3 oper. then array holds 7 num after push below (line 372) bc seventh is result of operation.
+    // after fourth pair is 8 num, 4 oper. then array holds 9 num after push below (line 372) bc 9th is result of operation.
+    // after fifth pair is 10 num, 5 oper. then array holds 11 num after push below (line 372) bc 11th is result of operation.
 
+    /*
     if (displayOperatorCompareDisplayArray != displayArrayLength) { // this makes sure that double numbers aren't entered. 
       // that it is number then operator then number then operator etc
           console.log("error");
@@ -368,6 +430,7 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
           displayArray.splice(lastIndex);
           return;
     };    
+    */
 
     if (displayOperator[lastOperator] == "addOperator") {
       initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
@@ -1409,16 +1472,18 @@ buttonAdd.addEventListener("click", (e) => { // when add is clicked
   const compareWithDisplayArrayLength = ((displayOperatorLength * 2) - 1);
   console.log(`operator count * 2 minus 1: ${compareWithDisplayArrayLength}`);
 
-  const lastOperator = displayOperator.length - 2;
+  const lastOperator = displayOperator.length - 2; // this is not the last operator but the second to last bc when you do a 
+  // a double operator, it pushes the last one to the end of the array and we want to take this last one and replace the previous
+  // operator so no matter how many operators they press, it will only use the last one that they pressed.
   console.log(`last index of operators: ${lastOperator}`);
 
   if (compareWithDisplayArrayLength != displayArrayLength) {  // when double operators are entered after a number
     console.log("error");
     let msg = "error. enter a number before an operator.";
     display.textContent = msg;
-    displayOperator.splice(lastOperator, 1);
-  }; // a problem arises when you enter double numbers after an operator, it gives an error. need to fix this.
-  // but fix double numbers at each number button part?
+    displayOperator.splice(lastOperator, 1); // it removes the second to last operator so the last operator will move forward by 
+    // one index.
+  }; 
 
 });
 
