@@ -311,16 +311,24 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 */
 
 let initialAnswer;
-const beforeMergeNumber = [];
+const beforeMergeNumber = []; // holds each number press as a string
 console.log(`changes single digits to complete number: ${beforeMergeNumber}`);
 
-const beforeDisplayArray = []; // put the merged numbers here as index 0, 1, 2, 3, etc. then push to displayArray?
+let afterMergeNumber; // holds the joined number as a single var but as a string
 
-const displayArrayTest = [];
+let afterMergeFromStringToNum; // holds the joined number as a single var and changes from string to number
+
+const fromDisplay = []; // the joined string is now a number to send to another array. when the other array
+// receives these indexes, the new array (displayArray) will receive them as spread syntax bc without spread syntax, 
+// the values get sent as nested arrays and you want to use individual items not nested arrays.
 
 const displayArray = []; // starts as index 0 and index 1, then index 2 and 3, then 4 and 5. the first is always even. 
 // the second is always odd. work in pairs.
 console.log(`holds the numbers: ${displayArray}`);
+
+const testDisplayArray = []; // this will be the final array for numbers to be calculated on. since the displayArray receives
+// all the numbers pressed instead of a single larger number, you're using the last index of displayArray to send the number 
+// you want. but it doesn't work that way. it still sends each individual number instead of the larger one.
 
 const displayOperator = []; // holds the word for the operator function. then after the second number fills displayArray,
 // apply the correct operator function.
@@ -330,65 +338,65 @@ console.log(`holds the operators: ${displayOperator}`);
 button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends the value 7 to the display
   console.log(e.target); // full element with id, text etc
   console.log(e.target.innerText); // text only
-  const showInDisplay = e.target.innerText; // before it was Number(e.target.innerText)
+  // const showInDisplay = e.target.innerText; // before it was const showInDisplay = Number(e.target.innerText)
   // display.textContent = showInDisplay; // put the value in the display. this will show in display in the html id show-numbers.
   
   // here you need to put something to capture each number for multiple digits and then do a join or concatenate so the multiple
   // digits entered are treated as a whole number.
-  beforeMergeNumber.push(showInDisplay); // each individual number is put into the array. next need to join/concatenate them to a 
+
+  const numberToSend = 7; // tried to hardcode the 7 as a var instead of taking from the event object. still doesn't work?
+  beforeMergeNumber.push(numberToSend); // each individual number is put into the array. next need to join/concatenate them to a 
   // complete number.
-  console.log(beforeMergeNumber);
-  console.log(`before merge array count: ${beforeMergeNumber.length}`);
-  const afterMergeNumber = beforeMergeNumber.join(""); // line 331 makes the number button from string to a number, but bc of join
-  // the result is a string again. 
-  console.log(afterMergeNumber);
-  console.log(`after merge array count: ${afterMergeNumber.length}`);
-  console.log(typeof afterMergeNumber); // shows string. so will need to do Number again.
-  const afterMergeFromStringToNum = Number(afterMergeNumber);
-  console.log(afterMergeFromStringToNum); 
-  // console.log(afterMergeFromStringToNum.length);
-  console.log(typeof afterMergeFromStringToNum); // shows as number again.
-  display.textContent = afterMergeFromStringToNum;
+  console.log(`before the join: ${beforeMergeNumber}`); // multiple 7's are put in an array as 7, 7, 7, etc
+  afterMergeNumber = beforeMergeNumber.join(""); // bc of join the result is a string again. so don't do the Number() until later.
+  console.log(`after the join: ${afterMergeNumber}`); // the join makes the 7, 7, 7, etc into 77777s but it is a string.
+  console.log(`join is a: ${typeof afterMergeNumber}`); // shows string. so will need to do Number again.
+  afterMergeFromStringToNum = Number(afterMergeNumber);
+  console.log(`join changed to: ${typeof afterMergeFromStringToNum}`); // shows as number.
+  console.log(`number put into single var, not an array: ${afterMergeFromStringToNum}`); // the Number() makes the 77777s string into a number. 
+  display.textContent = afterMergeFromStringToNum; // the joined string is now a single number and is showing in the html
+  console.log(display); // this will show all the 77777s in the display.
+  console.log(`the joined string is now a number and is showing in the html`);
+  const sendToCalc = Number(display.textContent); // ensuring it is still a number
+  console.log(`what the html display shows: ${sendToCalc}`);
+  console.log(typeof sendToCalc);
+  fromDisplay.push(sendToCalc); // the html display shows the joined string and sendToCalc ensures it is a number and 
+  // sends it to an array
+  console.log(`number to array shows as multiple indexes instead of single index: ${fromDisplay}`);
 
+  displayArray.push(...fromDisplay); // the fromDisplay array holds each joined string that becomes a number and is sent to 
+  // displayArray but as ...spread syntax. without spread syntax, it sends nested arrays and we want all the indexes to be 
+  // individual items and not nested arrays.
 
-  const theLast = beforeDisplayArray.length; // will be 0 bc nothing is pushed to array until after line 358. after the first 
-  // push, then this increases with each push
-  console.log(`inital length of beforeDisplayArray: ${theLast}`)
-  beforeDisplayArray.push(afterMergeFromStringToNum);
-  console.log(beforeDisplayArray);
-  const theLatter = beforeDisplayArray.length; // should be 1 after the push. and this increases with each push.
-  console.log(`after push; length of beforeDisplayArray: ${theLatter}`)
+  console.log(`using spread syntax to get each index: ${displayArray}`);
 
-    // redo the 334 part. to not have 7 and then 777777's to be sent to displayArray? maybe remove the index 0?
-
-  // when click 7 once, it goes to index 0. then when click 7 multiple times, it will merge and show a larger number but it shows
-  // a 7 at index 0 and then for ex 77777777 at index 1 and that larger 777777's number keeps getting sent to index 1 instead of 
-  // the whole number going to index 0.
-
-  const lastIndexToPush = theLatter - 1;
-  displayArrayTest.push(beforeDisplayArray[lastIndexToPush]);
-  console.log(displayArrayTest); // expected 77777's but instead it shows 7, 777777's. and each new larger number of 77777s will
-  // be put in the array the same way as 7, 777777s. seems joining gives a larger number of 77777s but when you push that value 
-  // to a new array, it takes index 0 as the first digit of 7 and then index 1 is the real number you want?
-
-  const putIntoDisplayArray = displayArrayTest.slice(-1);
-  console.log(putIntoDisplayArray);
-  displayArray.push(putIntoDisplayArray);
-  console.log(displayArray);
+  const testLastIndex = displayArray.length - 1;
+  console.log(`after spread, getting last index: ${testLastIndex}`);
+  testDisplayArray.push(displayArray[testLastIndex]);
+  console.log(`sent last index but shows separate numbers again: ${testDisplayArray}`);
+  console.log(`join strings then changed to number doesn't work. must use spread to prevent nested arrays`);
+  console.log(`using the last index's value after spread, the result is still multiple indexes instead of one`);
 
   /*  
-  notice the below output and lines. line 370 is building the array with each press of 7s so when you finish pressing 
-  a bunch of 7s, you should have 777 or 77777 etc
+  LESSON LEARNED ABOUT JOINING A STRING AND THEN CHANGING TO A NUMBER FORMAT: 
+  
+  EVEN WHEN EACH NUMBER BUTTON PRESSED IS CAPTURED IN AN ARRAY AND THEN THOSE VALUES ARE JOINED TO A SINGLE NUMBER 
+  REGARDLESS OF HOW MANY DIGITS IT CONTAINS. WHEN YOU TAKE THAT NUMBER AND SEND IT TO A NEW ARRAY TO DO A CALCULATION, IT
+  WILL TREAT IT NOT AS A SINGLE VALUE BUT MULTIPLE VALUES SO THE NEW ARRAY WILL HAVE MULTIPLE INDEXES INSTEAD OF RECEIVING
+  A SIGNLE INDEX. 
+  
+  BY USING SPREAD SYNTAX TO SEPARATE TO MULITPLE INDEXES AND THEN USING THE LAST INDEX NUBMER TO GET
+  WHAT YOU WANT DOESN'T WORK. EACH TIME YOU SEND THE NEW INDEX/VALUE TO AN ARRAY IT KEEPS TREATING IT AS MULTIPLE INDEXES
+  INSTEAD OF A SINGLE VALUE/INDEX. FORGET ABOUT JOINING AND CHANGING TO A NUMBER. INSTEAD USE THE * 10 + I OPTION YOU FOUND IN 
+  STACKOVERFLOW. 
 
-  line 375 is taking the last index and will push that value to the displayArray. line 377 instead of showing the value, shows
-  array1, array2 and as a result when you use an operator you get a really large number instead of 777 + 777 for ex
-
-  [7, 77, 777]              line 370
-  [777]                     javascript2.js:375 
-  (2) [Array(1), Array(1)]  javascript2.js:377
+  ALSO SPREAD MUST BE USED WHEN DOING THE ABOVE BC IF SPREAD ISN'T USED, THEN THE NEW ARRAY RECEIVES NESTED ARRAYS INSTEAD OF 
+  INDIVIDUAL VALUES. AGAIN, DON'T DO THIS WAY BC JOIN OF STRINGS TO NUMBERS AND THEN SENDING TO ARRAYS DON'T WORK AS SINGLE 
+  VALUES BUT IT KEEPS SEPARATING THE SINGLE VALUES INTO MULTIPLE VALUES.
 
   */
 
+  /* uncomment below later. this part below is the logic for using with an operator.
   const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
   // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
   console.log(`the last index number: ${lastIndex}`);
@@ -432,6 +440,8 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
     };    
     */
 
+    /*
+
     if (displayOperator[lastOperator] == "addOperator") {
       initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
       console.log(initialAnswer); // keep
@@ -467,12 +477,15 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked, it sends
 
   console.log(displayArray);
 
+
   // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
   // operator and get the answer
 
   // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
   // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
   // that can be calculated.
+
+  */
 
 });
 
