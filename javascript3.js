@@ -188,31 +188,68 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
   const lastOperator = displayOperator.length - 1; // index of the last operation
   console.log(`operator: ${displayOperator[lastOperator]}`);
 
-  if (displayOperator[lastOperator] == undefined) { // if no operators entered yet, then this becomes the first number of a pair
-    // of numbers to be calculated
-    initialNumberBeforePush = initialNumberBeforePush + beforeDisplayArray; // this concatenates the single digits to become
-    // a multi-digit number
-    console.log(`initial number: ${initialNumberBeforePush}`);
-    // console.log(typeof initialNumberBeforePush); string. needs to be a number
-    becomeFirstNumber = Number(initialNumberBeforePush);
-    console.log(`initial number: ${becomeFirstNumber}`);
-    console.log(typeof becomeFirstNumber); // no longer a string. now a number.
-    display.textContent = becomeFirstNumber;  // displays it in the html
-  }   if (displayOperator[lastOperator] != undefined) { // if an operator has been entered, then this is the last number of the pair to be calculated.
-      nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; // this concatenates the single digits to become
-      // a multi-digit number
-      console.log(`next number: ${nextNumberBeforePush}`);
-      // console.log(typeof nextNumberBeforePush); string. needs to be a number
-      becomeSecondNumber = Number(nextNumberBeforePush);
-      console.log(`next number: ${becomeSecondNumber}`);
-      console.log(typeof becomeSecondNumber); // no longer a string. now a number.
-      display.textContent = becomeSecondNumber; // displays it in the html
-  }     if (displayOperator[lastOperator] == "addOperator") {
-        initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
-        console.log(initialAnswer);
-        // display.textContent = initialAnswer;
-  };     //else if (displayOperator[lastOperator] == "subtOperator" ) {
+  // 194 to 226 will need to be edited later. for now, the order is 1st num, operator then 2nd num. any other order will mess 
+  // it up. takes a pair and does the add ok. next is to send initialAnswer as new 1st num and get a new 2nd num and do another
+  // add.
 
+    if (displayOperator[lastOperator] == undefined) { // if no operators entered yet, then this becomes the first number of a pair
+      // of numbers to be calculated
+      initialNumberBeforePush = initialNumberBeforePush + beforeDisplayArray; // this concatenates the single digits to become
+      // a multi-digit number
+      console.log(`initial number: ${initialNumberBeforePush}`);
+      // console.log(typeof initialNumberBeforePush); string. needs to be a number
+      becomeFirstNumber = Number(initialNumberBeforePush);
+      console.log(`initial number: ${becomeFirstNumber}`);
+      console.log(typeof becomeFirstNumber); // no longer a string. now a number.
+      display.textContent = becomeFirstNumber;  // displays it in the html
+    }   if (displayOperator[lastOperator] != undefined) { // if an operator has been entered, then this is the last number of the pair to be calculated.
+        nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; // this concatenates the single digits to become
+        // a multi-digit number
+        console.log(`next number: ${nextNumberBeforePush}`);
+        // console.log(typeof nextNumberBeforePush); string. needs to be a number
+        becomeSecondNumber = Number(nextNumberBeforePush);
+        console.log(`next number: ${becomeSecondNumber}`);
+        console.log(typeof becomeSecondNumber); // no longer a string. now a number.
+        display.textContent = becomeSecondNumber; // displays it in the html
+    }     if (displayOperator[lastOperator] == "addOperator") {
+          initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
+          console.log(`initial answer: ${initialAnswer}`);
+          // nextNumberBeforePush = "";
+          // becomeSecondNumber = 0;
+          console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
+          console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
+          // nextNumberBeforePush = ""; // clears the second number accumulator since the pair is done. initialAnswer becomes 
+          // the new first number and the else if below will accumulate the button clicks for the second number.
+          //becomeFirstNumber = initialAnswer;
+          //console.log(`initial answer becomes new first number: ${becomeFirstNumber}`);
+          // display.textContent = initialAnswer;   
+    
+    }; //else if (displayOperator[lastOperator] == "subtOperator" ) {
+
+  
+  //if (initialAnswer != undefined) { // a pair is done. now starting a new pair
+  //becomeFirstNumber = initialAnswer;
+  //console.log(`initial answer becomes new first number: ${becomeFirstNumber}`);
+  //display.textContent = initialAnswer; 
+  /*
+  } else {  // has received a pair of numbers and did the calculation and is now going 
+    // to take that answer and will be the first number of a new pair 
+    becomeFirstNumber = initialAnswer;
+    console.log(`initial number of new pair: ${becomeFirstNumber}`);
+    display.textContent = becomeFirstNumber;
+    // nextNumberBeforePush = ""; // clears the second number accumulator since the pair is done. initialAnswer becomes 
+          // the new first number and the else if below will accumulate the button clicks for the second number.
+    nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; // new number click is replacing the previous 
+    // second number
+    console.log(`new next number: ${nextNumberBeforePush}`);
+    // console.log(typeof nextNumberBeforePush); string. needs to be a number
+    becomeSecondNumber = Number(nextNumberBeforePush);
+    console.log(`new next number: ${becomeSecondNumber}`);
+    console.log(typeof becomeSecondNumber); // no longer a string. now a number.
+    display.textContent = becomeSecondNumber; // displays it in the html
+
+  };
+  */
   //}
   
   /*
@@ -355,6 +392,10 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
   const lastOperator = displayOperator.length - 1; // index of the last operation
   console.log(`operator: ${displayOperator[lastOperator]}`);
 
+  // 399 to 423 will need to be edited later. for now, the order is 1st num, operator then 2nd num. any other order will mess 
+  // it up. takes a pair and does the add ok. next is to send initialAnswer as new 1st num and get a new 2nd num and do another
+  // add.
+
   if (displayOperator[lastOperator] == undefined) {
     initialNumberBeforePush = initialNumberBeforePush + beforeDisplayArray;
     console.log(`initial number: ${initialNumberBeforePush}`);
@@ -373,9 +414,14 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
       display.textContent = becomeSecondNumber;
   }     if (displayOperator[lastOperator] == "addOperator") {
         initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
-        console.log(initialAnswer);
+        console.log(`initial answer: ${initialAnswer}`);
+        console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
+        console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
+        //becomeFirstNumber = initialAnswer;
+        //console.log(`initial answer becomes new first number: ${becomeFirstNumber}`);
         // display.textContent = initialAnswer;
   };
+
   /*
   if ((becomeFirstNumber != undefined) && (becomeSecondNumber != undefined)) {
     initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
