@@ -183,7 +183,9 @@ const displayOperator = []; // holds the word for the operator function. then af
 
 console.log(`holds the operators: ${displayOperator}`);
 
-//const testAnswer = [];
+const testAnswer = []; // this is outside the button events but receives each answer from a push and remains a number unlike
+// the previous attempts where each number was a nested array or the number was split up into separate indexes instead of a 
+// single index. see if you can use this method for tracking the first and second numbers in displayArray []
 
 button7.addEventListener("click", (e) => { // when button 7 is clicked
   console.log(e.target); // full element with id, text etc
@@ -200,7 +202,8 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
   // try declaring an array and receiving the initial answer. then send that index value to a var outside of the button area 
   // and see if it stays the number instead of nested or multiple indexes. this way that value can be accessed by other button 
   // areas
-  const testAnswer = [];
+  // const testAnswer = []; // stores the initial answer. outside of the button area is var nextFirstNumber. this will reference 
+  // the initial answer to be used as the first part of the next pair to be calculated.
 
     if (displayOperator[lastOperator] == undefined) { // if no operators entered yet, then this becomes the first number of a pair
       // of numbers to be calculated
@@ -269,6 +272,30 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
   console.log(`last index's answer: ${testAnswer[testAnswerLastIndex]}`);
   nextFirstNumber = (testAnswer[testAnswerLastIndex]);
   console.log(`to be sent as new first number in new pair: ${nextFirstNumber}`);
+
+// above at line 206, the condition is for the first pair of numbers where the displayOperator array only has index 0.
+// the next condition is when displayOperator will have index 1. is this similar to odd and even indexes like your first attempt 
+// with single digits? if odd index then it means it is a new pair? but that was for displayArray and not the operator. to 
+// track operators then if after index 0, then that means a pair has been done?
+
+
+// also don't use the condition at lines 281 to 294 yet bc it keeps replacing the first number before the new second number has 
+// been received and also the add is not calculated correctly bc it keeps using the initial answer after a single digit press 
+// when you need more digits for the second number
+    // if (nextFirstNumber != undefined) { // this means a pair was calculated so the initial answer is referenced by nextFirstNumber
+      // becomeFirstNumber = nextFirstNumber;
+      // console.log(`new first number for next pair: ${becomeFirstNumber}`);
+      
+
+    //};
+
+
+    // if the above is true then it is ready for a new second number and need to clear out the previous one
+   // nextNumberBeforePush = "";
+   // console.log(`if second number clear, will show blank: ${nextNumberBeforePush}`);
+    // nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; don't use this line bc it will hold the last button 
+    // pressed. ex if your old second number was 777 and it got cleared, there will still be a 7 showing bc the 777 was 
+    // accumulated so the last 7 to be accumulated is from beforeDisplayArray
 });
 
 button8.addEventListener("click", (e) => { // when button 8 is clicked
@@ -285,7 +312,8 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
   // it up. takes a pair and does the add ok. next is to send initialAnswer as new 1st num and get a new 2nd num and do another
   // add.
 
-  const testAnswer = [];
+  //const testAnswer = []; // stores the initial answer. outside of the button area is var nextFirstNumber. this will reference 
+  // the initial answer to be used as the first part of the next pair to be calculated.
 
   if (displayOperator[lastOperator] == undefined) {
     initialNumberBeforePush = initialNumberBeforePush + beforeDisplayArray;
@@ -1206,7 +1234,7 @@ buttonAdd.addEventListener("click", (e) => { // when add is clicked
   displayOperator.push("addOperator");
   console.log(displayOperator);
 
-  if (becomeFirstNumber === undefined) { // at the very beginning when no numbers have been entered yet.
+  if (becomeFirstNumber == undefined) { // at the very beginning when no numbers have been entered yet.
     console.log("error");
     let msg = "number needed before the operator";
     display.textContent = msg;
