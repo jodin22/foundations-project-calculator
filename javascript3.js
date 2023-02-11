@@ -162,23 +162,28 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 
 */
 
-let initialAnswer;
+let initialAnswer; // receives the pair's calculated answer which will then become the first number of the next pair
 let initialNumberBeforePush = ""; // accumulate each number button press to show as a concatenated multi-digit number
-let nextNumberBeforePush = ""; // these are strings
-let becomeFirstNumber = 0; // takes the multi-digit number that is a string and becomes a number
-let becomeSecondNumber = 0;
+let nextNumberBeforePush = ""; // these are strings to be changed to number later
+let becomeFirstNumber; // takes the multi-digit number that is a string and becomes a number
+let becomeSecondNumber;
+let nextFirstNumber;
 
 const displayArray = []; // starts as index 0 and index 1, then index 2 and 3, then 4 and 5. the first is always even. 
-// the second is always odd. work in pairs.
+// the second is always odd. work in pairs. (NOT USING THIS RIGHT NOW BC EACH PUSH EITHER MAKES NESTED ARRAYS OR SPLITS THE 
+// MULTI-DIGIT NUMBER INTO THE INDIVIDUAL NUMBERS AND IN SEPARATE INDEXES. AVOID PUSHING TO ARRAY FOR NOW.)
+
+// (HOWEVER IF YOU DECLARE THE ARRAY INSIDE A BUTTON PRESS SECTION, THEN THE PUSH WILL SEND NUMBERS THE WAY YOU EXPECT INSTEAD
+// OF NESTED ARRAYS OR SEPARATE INDEXES ON EACH DIGIT.)
+
 console.log(`holds the numbers: ${displayArray}`);
 
-const testDisplayArray = []; // if have two const testDisplayArray, there is no conflict when the second one is declared 
-// inside a buton event
-
 const displayOperator = []; // holds the word for the operator function. then after the second number fills displayArray,
-// apply the correct operator function.
+// apply the correct operator function. (THIS ARRAY AND PUSHING IS OK BC ALL IT IS DOING IS TRACKING WHICH OPERATOR WAS PRESSED)
 
 console.log(`holds the operators: ${displayOperator}`);
+
+//const testAnswer = [];
 
 button7.addEventListener("click", (e) => { // when button 7 is clicked
   console.log(e.target); // full element with id, text etc
@@ -188,9 +193,14 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
   const lastOperator = displayOperator.length - 1; // index of the last operation
   console.log(`operator: ${displayOperator[lastOperator]}`);
 
-  // 194 to 226 will need to be edited later. for now, the order is 1st num, operator then 2nd num. any other order will mess 
+  // 195 to 227 will need to be edited later. for now, the order is 1st num, operator then 2nd num. any other order will mess 
   // it up. takes a pair and does the add ok. next is to send initialAnswer as new 1st num and get a new 2nd num and do another
   // add.
+
+  // try declaring an array and receiving the initial answer. then send that index value to a var outside of the button area 
+  // and see if it stays the number instead of nested or multiple indexes. this way that value can be accessed by other button 
+  // areas
+  const testAnswer = [];
 
     if (displayOperator[lastOperator] == undefined) { // if no operators entered yet, then this becomes the first number of a pair
       // of numbers to be calculated
@@ -202,7 +212,8 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
       console.log(`initial number: ${becomeFirstNumber}`);
       console.log(typeof becomeFirstNumber); // no longer a string. now a number.
       display.textContent = becomeFirstNumber;  // displays it in the html
-    }   if (displayOperator[lastOperator] != undefined) { // if an operator has been entered, then this is the last number of the pair to be calculated.
+    }   if (displayOperator[lastOperator] != undefined) { // if an operator has been entered, then this is the last number of
+        // the pair to be calculated.
         nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; // this concatenates the single digits to become
         // a multi-digit number
         console.log(`next number: ${nextNumberBeforePush}`);
@@ -214,10 +225,11 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
     }     if (displayOperator[lastOperator] == "addOperator") {
           initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
           console.log(`initial answer: ${initialAnswer}`);
+          testAnswer.push(initialAnswer);
           // nextNumberBeforePush = "";
           // becomeSecondNumber = 0;
-          console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
-          console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
+          //console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
+          //console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
           // nextNumberBeforePush = ""; // clears the second number accumulator since the pair is done. initialAnswer becomes 
           // the new first number and the else if below will accumulate the button clicks for the second number.
           //becomeFirstNumber = initialAnswer;
@@ -251,135 +263,12 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
   };
   */
   //}
-  
-  /*
-  if ((becomeFirstNumber != undefined) && (becomeSecondNumber != undefined)) {
-    initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
-    console.log(initialAnswer);
-  }; 
-  */
-  
 
-  // const displayArray = [];
-
-  /*
-  displayArray.push(becomeNumber); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
-  console.log(`after push displayArray: ${displayArray}`);
-  console.log(`displayOperator shows: ${displayOperator}`);
-
-  testDisplayArray.push(becomeNumber);
-  console.log(testDisplayArray);
-  */
-
-  /*
-  this part will take the last item in the array and put it in a var. but when you push this new value to another array you 
-  will get a similar problem as before. instead of sending the value to the array, it sends a nested array.
-
-  console.log(testDisplayArray.slice(-1));
-  testDisplay2 = testDisplayArray.slice(-1);
-  console.log(testDisplay2); // at this line, it shows a single value
-
-  testDisplay3.push(testDisplay2); // the push will put the single value into a nested array
-  console.log(testDisplay3); 
-
-  testDisplay4.push(testDisplay3[testDisplay3.length-1]);
-  console.log(testDisplay4);
-
-  */
-
-  
-
-  // const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
-  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
-  // console.log(`the last index number: ${lastIndex}`);
-
-  // const testDisplayArray = []; // having this here instead of outside the button, you get the desired number instead of 
-  // the number broken apart and put into separate indexes or a nested array?
-  // testDisplayArray.push(displayArray[lastIndex]);
-  // console.log(testDisplayArray);
-  
-  // const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
-  // do the calculation
-  // console.log(`modulus remainder of last index: ${isItOdd}`);
-
-  /*
-  if (isItOdd != 0) { // if the last index is an odd number which means the remainder is not 0, then grab the last one and 
-    // the one before it and take both numbers in displayArray and do a calculation
-    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
-    const firstNumber = displayArray.length - 2; // index for first half of pair
-    const secondNumber = displayArray.length - 1; // index for second half of pair
-    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
-    // to apply.
-    const lastOperator = displayOperator.length - 1; // index of the last operation
-    console.log(displayOperator[lastOperator]); 
-
-    const displayArrayLength = displayArray.length;  
-    console.log(`count of numbers entered: ${displayArrayLength}`);
-    const lastIndex = displayArray.length - 1;
-    console.log(`last index of displayArray: ${lastIndex}`);
-
-    const displayOperatorLength = displayOperator.length;
-    console.log(`count of operators entered: ${displayOperatorLength}`);
-    const displayOperatorCompareDisplayArray = displayOperatorLength * 2;
-    console.log(`operator count * 2: ${displayOperatorCompareDisplayArray}`);
-    // after one pair is 2 num, 1 oper. then array holds 3 num after push below line 360 bc third is the result of operation.
-    // after second pair is 4 num, 2 oper. then array holds 5 num after push below line 360 bc fifth is the result of operation.
-    // after third pair is 6 num, 3 oper. then array holds 7 num after push below line 360 bc seventh is result of operation.
-    // after fourth pair is 8 num, 4 oper. then array holds 9 num after push below line 360 bc 9th is result of operation.
-    // after fifth pair is 10 num, 5 oper. then array holds 11 num after push below line 360 bc 11th is result of operation.
-
-    if (displayOperatorCompareDisplayArray != displayArrayLength) { // this makes sure that double numbers aren't entered. 
-      // that it is number then operator then number then operator etc
-          console.log("error");
-          let msg = "error. enter an operator.";
-          display.textContent = msg;
-          displayArray.splice(lastIndex);
-          return;
-    };    
-
-    if (displayOperator[lastOperator] == "addOperator") {
-      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] == "subtractOperator") {
-      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] == "multiplyOperator") {
-      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] == "divideOperator") { 
-      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] === undefined) { 
-      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log("error"); // keep
-      let msg = "error. enter an operator after a number.";
-      // displayArray.push(initialAnswer); // keep
-      display.textContent = msg;
-      displayArray.splice(lastIndex);
-    };
-  } else {
-    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
-    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
-  };
-
-  console.log(displayArray);
-  */
-
-  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
-  // operator and get the answer
-
-  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
-  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
-  // that can be calculated.
-
+  console.log(testAnswer);
+  const testAnswerLastIndex = testAnswer.length - 1;
+  console.log(`last index's answer: ${testAnswer[testAnswerLastIndex]}`);
+  nextFirstNumber = (testAnswer[testAnswerLastIndex]);
+  console.log(`to be sent as new first number in new pair: ${nextFirstNumber}`);
 });
 
 button8.addEventListener("click", (e) => { // when button 8 is clicked
@@ -392,9 +281,11 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
   const lastOperator = displayOperator.length - 1; // index of the last operation
   console.log(`operator: ${displayOperator[lastOperator]}`);
 
-  // 399 to 423 will need to be edited later. for now, the order is 1st num, operator then 2nd num. any other order will mess 
+  // 271 to 295 will need to be edited later. for now, the order is 1st num, operator then 2nd num. any other order will mess 
   // it up. takes a pair and does the add ok. next is to send initialAnswer as new 1st num and get a new 2nd num and do another
   // add.
+
+  const testAnswer = [];
 
   if (displayOperator[lastOperator] == undefined) {
     initialNumberBeforePush = initialNumberBeforePush + beforeDisplayArray;
@@ -415,8 +306,9 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
   }     if (displayOperator[lastOperator] == "addOperator") {
         initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
         console.log(`initial answer: ${initialAnswer}`);
-        console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
-        console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
+        testAnswer.push(initialAnswer);
+        //console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
+        //console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
         //becomeFirstNumber = initialAnswer;
         //console.log(`initial answer becomes new first number: ${becomeFirstNumber}`);
         // display.textContent = initialAnswer;
@@ -428,130 +320,11 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
     console.log(initialAnswer);
   }; 
   */
-
-
-
-  // const displayArray = [];
-
-  /*
-  displayArray.push(becomeNumber); // first time clicked goes to index 0, subsequent clicks go to index 1, 2, 3 etc
-  console.log(`after push displayArray: ${displayArray}`);
-  console.log(`displayOperator shows: ${displayOperator}`);
-
-  testDisplayArray.push(becomeNumber);
-  console.log(testDisplayArray);
-  */
-
-  /*
-  this part will take the last item in the array and put it in a var. but when you push this new value to another array you 
-  will get a similar problem as before. instead of sending the value to the array, it sends a nested array.
-
-  console.log(testDisplayArray.slice(-1));
-  testDisplay2 = testDisplayArray.slice(-1);
-  console.log(testDisplay2);  // at this line, it shows a single value
-
-  testDisplay3.push(testDisplay2); // the push will put the single value into a nested array
-  console.log(testDisplay3);
-
-  testDisplay4.push(testDisplay3[length-1]);
-  console.log(testDisplay4);
-
-  */
-
-  
-
-
-  // const lastIndex = displayArray.length - 1; // this is the last number's index inside displayArray. check if this index is an
-  // odd. if it is odd, then take the pair of numbers with the operator that was clicked and send the answer to another area.
-  // console.log(`the last index number: ${lastIndex}`);
-
-  // const testDisplayArray = []; // having this here instead of outside the button, you get the desired number instead of 
-  // the number broken apart and put into separate indexes or a nested array?
-  // testDisplayArray.push(displayArray[lastIndex]);
-  // console.log(testDisplayArray);
-  
-  // const isItOdd = lastIndex % 2; // if 0 then it is not the end of a pair yet. if 1, then it is the end of a pair and now you can 
-  // do the calculation
-  // console.log(`modulus remainder of last index: ${isItOdd}`);
-
-  /*
-  if (isItOdd != 0) { // if the last index is an odd number which means the remainder is not 0, then grab the last one and 
-    // the one before it and take both numbers in displayArray and do a calculation
-    // check the last operator in the displayOperator array and use that operator with the two numbers from displayArray
-    const firstNumber = displayArray.length - 2; // index for first half of pair
-    const secondNumber = displayArray.length - 1; // index for second half of pair
-    // instead of hard coding the addOperator, use the array displayOperator to grab the last one to determine which operation 
-    // to apply.
-    const lastOperator = displayOperator.length - 1; // index of the last operation
-    console.log(displayOperator[lastOperator]); 
-
-    const displayArrayLength = displayArray.length;  
-    console.log(`count of numbers entered: ${displayArrayLength}`);
-    const lastIndex = displayArray.length - 1;
-    console.log(`last index of displayArray: ${lastIndex}`);
-
-    const displayOperatorLength = displayOperator.length;
-    console.log(`count of operators entered: ${displayOperatorLength}`);
-    const displayOperatorCompareDisplayArray = displayOperatorLength * 2;
-    console.log(`operator count * 2: ${displayOperatorCompareDisplayArray}`);
-    // after one pair is 2 num, 1 oper. then array holds 3 num after push below line 360 bc third is the result of operation.
-    // after second pair is 4 num, 2 oper. then array holds 5 num after push below line 360 bc fifth is the result of operation.
-    // after third pair is 6 num, 3 oper. then array holds 7 num after push below line 360 bc seventh is result of operation.
-    // after fourth pair is 8 num, 4 oper. then array holds 9 num after push below line 360 bc 9th is result of operation.
-    // after fifth pair is 10 num, 5 oper. then array holds 11 num after push below line 360 bc 11th is result of operation.
-
-    if (displayOperatorCompareDisplayArray != displayArrayLength) { // this makes sure that double numbers aren't entered. 
-      // that it is number then operator then number then operator etc
-          console.log("error");
-          let msg = "error. enter an operator.";
-          display.textContent = msg;
-          displayArray.splice(lastIndex);
-          return;
-    };    
-
-    if (displayOperator[lastOperator] == "addOperator") {
-      initialAnswer = addOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] == "subtractOperator") {
-      initialAnswer = subtractOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] == "multiplyOperator") {
-      initialAnswer = multiplyOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] == "divideOperator") { 
-      initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log(initialAnswer); // keep
-      displayArray.push(initialAnswer); // keep
-      display.textContent = initialAnswer;
-    } else if (displayOperator[lastOperator] === undefined) { 
-      // initialAnswer = divideOperator(displayArray[firstNumber], displayArray[secondNumber]);
-      console.log("error"); // keep
-      let msg = "error. enter an operator after a number.";
-      // displayArray.push(initialAnswer); // keep
-      display.textContent = msg;
-      displayArray.splice(lastIndex);
-    };
-  } else {
-    console.log(`even index number`); // not a full pair yet. remember it has to be 0, 1. then 2, 3. then 4, 5 etc. the first
-    // part of the pair is even. the last part of the pair is odd. only when it is odd, will you do a calculation.
-  };
-
-  console.log(displayArray);
-  */
-
-  // if displayArray last index is odd which means there is now a pair of numbers to calculate, then send the pair to the 
-  // operator and get the answer
-
-  // use modulo % 2 on each odd index bc if % 2 on an even index such as 0, 2, 4, 6, 8 etc will not hava a remainder and those 
-  // that do have a remainder you know is odd. and if there is a value at an odd index, then that means there is a pair of numbers 
-  // that can be calculated.
-
+  console.log(testAnswer);
+  const testAnswerLastIndex = testAnswer.length - 1;
+  console.log(`last index's answer: ${testAnswer[testAnswerLastIndex]}`);
+  nextFirstNumber = (testAnswer[testAnswerLastIndex]);
+  console.log(`to be sent as new first number in new pair: ${nextFirstNumber}`);
 });
 
 button9.addEventListener("click", (e) => { // when button 9 is clicked
@@ -1432,6 +1205,13 @@ buttonAdd.addEventListener("click", (e) => { // when add is clicked
   console.log(e.target.innerText); // text only
   displayOperator.push("addOperator");
   console.log(displayOperator);
+
+  if (becomeFirstNumber === undefined) { // at the very beginning when no numbers have been entered yet.
+    console.log("error");
+    let msg = "number needed before the operator";
+    display.textContent = msg;
+    displayOperator.splice(0);
+  };
 
   /*
   const displayArrayBeforeAnything = displayArray[0];
