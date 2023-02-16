@@ -165,10 +165,13 @@ buttons.forEach((button) => { // each element in the buttons "array" is passed t
 let initialAnswer; // receives the pair's calculated answer which will then become the first number of the next pair
 let initialNumberBeforePush = ""; // accumulate each number button press to show as a concatenated multi-digit number
 let nextNumberBeforePush = ""; // these are strings to be changed to number later
+let newSecond = ""; // clear it to receive new numbers? rethink this part?
 let becomeFirstNumber; // takes the multi-digit number that is a string and becomes a number
 let becomeSecondNumber;
-let nextFirstNumber;
+let nextFirstNumber; // declared but haven't used yet?
 
+// displayArray hasn't been used yet in this attempt. it was used in previous attempts to store the first, second and initial 
+// answers
 const displayArray = []; // starts as index 0 and index 1, then index 2 and 3, then 4 and 5. the first is always even. 
 // the second is always odd. work in pairs. (NOT USING THIS RIGHT NOW BC EACH PUSH EITHER MAKES NESTED ARRAYS OR SPLITS THE 
 // MULTI-DIGIT NUMBER INTO THE INDIVIDUAL NUMBERS AND IN SEPARATE INDEXES. AVOID PUSHING TO ARRAY FOR NOW.)
@@ -183,9 +186,20 @@ const displayOperator = []; // holds the word for the operator function. then af
 
 console.log(`holds the operators: ${displayOperator}`);
 
-const testAnswer = []; // this is outside the button events but receives each answer from a push and remains a number unlike
-// the previous attempts where each number was a nested array or the number was split up into separate indexes instead of a 
-// single index. see if you can use this method for tracking the first and second numbers in displayArray []
+const firstNumber = []; // inside each button area, there is a if/then that will push the number to the array as first or second
+// number. then also inside each if/then, it grabs the last index of first or second number array. seems inside the if/then in 
+// the button area, it grabs the right index. 
+const secondNumber = [];  
+// unsure whether this is bc the number is a result of accumulation and then changing
+// from string to number? or bc it is inside the if/then and then the push is done after all the accumulation and change from
+// string to number. bc earlier attempts tried join instead of accumulation. and even though changed the joined string to
+// a number, when grabbing that index, it either gave me a nested array or multiple indexes instead of a single number. 
+// also the join was done inside each button area, but it was not done within an if/then. i wonder if the join was done
+// inside an if/then and then changed to a number and then pushed, would it work? don't investigate the join anymore. wasted 
+// too much time on that attempt. just know that joins are for strings and you have to change it to a number if you want to 
+// do math on it.
+
+const initialAnswerAsNewFirst = []; // initialAnswer is a let. this gets pushed to the array
 
 button7.addEventListener("click", (e) => { // when button 7 is clicked
   console.log(e.target); // full element with id, text etc
@@ -194,19 +208,15 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
   
   const lastOperator = displayOperator.length - 1; // index of the last operation
   console.log(`operator: ${displayOperator[lastOperator]}`);
-
-  // 195 to 227 will need to be edited later. for now, the order is 1st num, operator then 2nd num. any other order will mess 
+  
+  // for now, the order is 1st num, operator then 2nd num. any other order will mess 
   // it up. takes a pair and does the add ok. next is to send initialAnswer as new 1st num and get a new 2nd num and do another
   // add.
 
-  // try declaring an array and receiving the initial answer. then send that index value to a var outside of the button area 
-  // and see if it stays the number instead of nested or multiple indexes. this way that value can be accessed by other button 
-  // areas
-  // const testAnswer = []; // stores the initial answer. outside of the button area is var nextFirstNumber. this will reference 
-  // the initial answer to be used as the first part of the next pair to be calculated.
-
+  // this first part is the very beginning when no operators have been entered yet. the very first pair of numbers.
     if (displayOperator[lastOperator] == undefined) { // if no operators entered yet, then this becomes the first number of a pair
       // of numbers to be calculated
+      
       initialNumberBeforePush = initialNumberBeforePush + beforeDisplayArray; // this concatenates the single digits to become
       // a multi-digit number
       console.log(`initial number: ${initialNumberBeforePush}`);
@@ -215,8 +225,17 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
       console.log(`initial number: ${becomeFirstNumber}`);
       console.log(typeof becomeFirstNumber); // no longer a string. now a number.
       display.textContent = becomeFirstNumber;  // displays it in the html
-    }   if (displayOperator[lastOperator] != undefined) { // if an operator has been entered, then this is the last number of
+      firstNumber.push(becomeFirstNumber); // push to first number array
+      console.log(firstNumber);
+      const lastIndex = firstNumber.length - 1; // bc this is pushed to an array outside the button, you can use length-1 and 
+      // get the correct index each time. if you declare length-1 inside the button, sometimes you get -1 instead of 0 or 1 
+      // less than the correct index.
+      const firstNumberToUse = firstNumber[lastIndex];
+      console.log(`first number to be used for operation: ${firstNumberToUse}`);
+      
+    } else { // if an operator has been entered, then this is the last number of
         // the pair to be calculated.
+        
         nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; // this concatenates the single digits to become
         // a multi-digit number
         console.log(`next number: ${nextNumberBeforePush}`);
@@ -225,77 +244,43 @@ button7.addEventListener("click", (e) => { // when button 7 is clicked
         console.log(`next number: ${becomeSecondNumber}`);
         console.log(typeof becomeSecondNumber); // no longer a string. now a number.
         display.textContent = becomeSecondNumber; // displays it in the html
-    }     if (displayOperator[lastOperator] == "addOperator") {
-          initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
-          console.log(`initial answer: ${initialAnswer}`);
-          testAnswer.push(initialAnswer);
-          // nextNumberBeforePush = "";
-          // becomeSecondNumber = 0;
-          //console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
-          //console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
-          // nextNumberBeforePush = ""; // clears the second number accumulator since the pair is done. initialAnswer becomes 
-          // the new first number and the else if below will accumulate the button clicks for the second number.
-          //becomeFirstNumber = initialAnswer;
-          //console.log(`initial answer becomes new first number: ${becomeFirstNumber}`);
-          // display.textContent = initialAnswer;   
-    
-    }; //else if (displayOperator[lastOperator] == "subtOperator" ) {
+        secondNumber.push(becomeSecondNumber); // push to second number array
+        console.log(secondNumber);
+        const lastIndex = secondNumber.length - 1;
+        // this sends to the array correctly. instead of sending to displayArray, create separate arrays for first and second number
+        //console.log(`second number to be used for operation: ${secondNumber[lastIndex]}`);
+        const secondNumberToUse = secondNumber[lastIndex];
+        console.log(`second number to be used for operation: ${secondNumberToUse}`);
+    };
 
-  
-  //if (initialAnswer != undefined) { // a pair is done. now starting a new pair
-  //becomeFirstNumber = initialAnswer;
-  //console.log(`initial answer becomes new first number: ${becomeFirstNumber}`);
-  //display.textContent = initialAnswer; 
-  /*
-  } else {  // has received a pair of numbers and did the calculation and is now going 
-    // to take that answer and will be the first number of a new pair 
-    becomeFirstNumber = initialAnswer;
-    console.log(`initial number of new pair: ${becomeFirstNumber}`);
-    display.textContent = becomeFirstNumber;
-    // nextNumberBeforePush = ""; // clears the second number accumulator since the pair is done. initialAnswer becomes 
-          // the new first number and the else if below will accumulate the button clicks for the second number.
-    nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; // new number click is replacing the previous 
-    // second number
-    console.log(`new next number: ${nextNumberBeforePush}`);
-    // console.log(typeof nextNumberBeforePush); string. needs to be a number
-    becomeSecondNumber = Number(nextNumberBeforePush);
-    console.log(`new next number: ${becomeSecondNumber}`);
-    console.log(typeof becomeSecondNumber); // no longer a string. now a number.
-    display.textContent = becomeSecondNumber; // displays it in the html
+    // now we know it is an ADD so it does the add and has an answer to be used as a new first number
+    if (displayOperator[lastOperator] == "addOperator") {
+      const lastIndexFirst = firstNumber.length - 1;
+      const firstNumberToUse = firstNumber[lastIndexFirst];
+      const lastIndexSecond = secondNumber.length - 1;
+      const secondNumberToUse = secondNumber[lastIndexSecond];
+      initialAnswer = addOperator(firstNumberToUse, secondNumberToUse);
+      console.log(initialAnswer);
+      initialAnswerAsNewFirst.push(initialAnswer);
+      console.log(initialAnswerAsNewFirst);
+      const lastIndexNewFirst = initialAnswerAsNewFirst.length - 1;
+      const newFirst = initialAnswerAsNewFirst[lastIndexNewFirst];
+      console.log(`first number for next pair: ${newFirst}`);
 
-  };
-  */
-  //}
+    };
 
-  console.log(testAnswer);
-  const testAnswerLastIndex = testAnswer.length - 1;
-  console.log(`last index's answer: ${testAnswer[testAnswerLastIndex]}`);
-  nextFirstNumber = (testAnswer[testAnswerLastIndex]);
-  console.log(`to be sent as new first number in new pair: ${nextFirstNumber}`);
+    // this part is for future pairs. it will take the initialAnswer and use that as the first number. the second number still 
+    // needs to be grabbed by the button clicks
+    if (initialAnswerAsNewFirst[initialAnswerAsNewFirst.length - 1] != undefined) {
+      const lastIndexNewFirst = initialAnswerAsNewFirst.length - 1;
+      const newFirst = initialAnswerAsNewFirst[lastIndexNewFirst]; // this is the new first number of the next pair
+      // get the second number using the button clicks
+      console.log(`next pair first number: ${newFirst}`);
+      console.log("need button clicks for second number");
+      newSecond = newSecond + beforeDisplayArray; // this part is not right?
+      console.log(`new second number in progress: ${newSecond}`);
+    };
 
-// above at line 206, the condition is for the first pair of numbers where the displayOperator array only has index 0.
-// the next condition is when displayOperator will have index 1. is this similar to odd and even indexes like your first attempt 
-// with single digits? if odd index then it means it is a new pair? but that was for displayArray and not the operator. to 
-// track operators then if after index 0, then that means a pair has been done?
-
-
-// also don't use the condition at lines 281 to 294 yet bc it keeps replacing the first number before the new second number has 
-// been received and also the add is not calculated correctly bc it keeps using the initial answer after a single digit press 
-// when you need more digits for the second number
-    // if (nextFirstNumber != undefined) { // this means a pair was calculated so the initial answer is referenced by nextFirstNumber
-      // becomeFirstNumber = nextFirstNumber;
-      // console.log(`new first number for next pair: ${becomeFirstNumber}`);
-      
-
-    //};
-
-
-    // if the above is true then it is ready for a new second number and need to clear out the previous one
-   // nextNumberBeforePush = "";
-   // console.log(`if second number clear, will show blank: ${nextNumberBeforePush}`);
-    // nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray; don't use this line bc it will hold the last button 
-    // pressed. ex if your old second number was 777 and it got cleared, there will still be a 7 showing bc the 777 was 
-    // accumulated so the last 7 to be accumulated is from beforeDisplayArray
 });
 
 button8.addEventListener("click", (e) => { // when button 8 is clicked
@@ -316,6 +301,7 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
   // the initial answer to be used as the first part of the next pair to be calculated.
 
   if (displayOperator[lastOperator] == undefined) {
+    
     initialNumberBeforePush = initialNumberBeforePush + beforeDisplayArray;
     console.log(`initial number: ${initialNumberBeforePush}`);
     // console.log(typeof initialNumberBeforePush); string. needs to be a number
@@ -323,7 +309,15 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
     console.log(`intial number: ${becomeFirstNumber}`);
     console.log(typeof becomeFirstNumber);
     display.textContent = becomeFirstNumber;
-  }   if (displayOperator[lastOperator] != undefined) {
+    firstNumber.push(becomeFirstNumber);
+    console.log(firstNumber);
+    const lastIndex = firstNumber.length - 1;
+    // this sends to the array correctly. instead of sending to displayArray, create separate arrays for first and second number
+    const firstNumberToUse = firstNumber[lastIndex];
+    console.log(`first number to be used for operation: ${firstNumberToUse}`);
+
+  } else {
+      
       nextNumberBeforePush = nextNumberBeforePush + beforeDisplayArray;
       console.log(`next number: ${nextNumberBeforePush}`);
       // console.log(typeof nextNumberBeforePush); string. needs to be a number
@@ -331,28 +325,43 @@ button8.addEventListener("click", (e) => { // when button 8 is clicked
       console.log(`next number: ${becomeSecondNumber}`);
       console.log(typeof becomeSecondNumber);
       display.textContent = becomeSecondNumber;
-  }     if (displayOperator[lastOperator] == "addOperator") {
-        initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
-        console.log(`initial answer: ${initialAnswer}`);
-        testAnswer.push(initialAnswer);
-        //console.log(`after first pair answer secondNumber accum: ${nextNumberBeforePush}`);
-        //console.log(`after first pair answer secondNumber val: ${becomeSecondNumber}`);
-        //becomeFirstNumber = initialAnswer;
-        //console.log(`initial answer becomes new first number: ${becomeFirstNumber}`);
-        // display.textContent = initialAnswer;
+      secondNumber.push(becomeSecondNumber);
+      console.log(secondNumber);
+      const lastIndex = secondNumber.length - 1;
+      // this sends to the array correctly. instead of sending to displayArray, create separate arrays for first and second number
+      const secondNumberToUse = secondNumber[lastIndex];
+      console.log(`second number to be used for operation: ${secondNumberToUse}`);
+
   };
 
-  /*
-  if ((becomeFirstNumber != undefined) && (becomeSecondNumber != undefined)) {
-    initialAnswer = addOperator(becomeFirstNumber, becomeSecondNumber);
+  if (displayOperator[lastOperator] == "addOperator") {
+    const lastIndexFirst = firstNumber.length - 1;
+    const firstNumberToUse = firstNumber[lastIndexFirst];
+    const lastIndexSecond = secondNumber.length - 1;
+    const secondNumberToUse = secondNumber[lastIndexSecond];
+    initialAnswer = addOperator(firstNumberToUse, secondNumberToUse);
     console.log(initialAnswer);
-  }; 
-  */
-  console.log(testAnswer);
-  const testAnswerLastIndex = testAnswer.length - 1;
-  console.log(`last index's answer: ${testAnswer[testAnswerLastIndex]}`);
-  nextFirstNumber = (testAnswer[testAnswerLastIndex]);
-  console.log(`to be sent as new first number in new pair: ${nextFirstNumber}`);
+    initialAnswerAsNewFirst.push(initialAnswer);
+    console.log(initialAnswerAsNewFirst);
+    const lastIndexNewFirst = initialAnswerAsNewFirst.length - 1;
+    const newFirst = initialAnswerAsNewFirst[lastIndexNewFirst];
+    console.log(`first number for next pair: ${newFirst}`);
+
+  };
+
+  // this part is for future pairs. it will take the initialAnswer and use that as the first number. the second number still 
+  // needs to be grabbed by the button clicks
+    if (initialAnswerAsNewFirst[initialAnswerAsNewFirst.length - 1] != undefined) {
+      const lastIndexNewFirst = initialAnswerAsNewFirst.length - 1;
+      const newFirst = initialAnswerAsNewFirst[lastIndexNewFirst]; // this is the new first number of the next pair
+      // get the second number using the button clicks
+      console.log(`next pair first number: ${newFirst}`);
+      console.log("need button clicks for second number");
+      newSecond = newSecond + beforeDisplayArray; // this part is not right?
+      console.log(`new second number in progress: ${newSecond}`);
+    };  
+
+
 });
 
 button9.addEventListener("click", (e) => { // when button 9 is clicked
